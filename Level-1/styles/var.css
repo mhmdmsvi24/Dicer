@@ -1,0 +1,14 @@
+:root {
+  /* Color Palette */
+  --color-1: #0081a7;
+  --color-2: #00afb9;
+  --color-3: #fdfcdc;
+  --color-4: #fed9b7;
+  --color-5: #f07167;
+  --color-6: #001524;
+  --color-7: #70d6ff;
+
+  /* Border Radius */
+  --border-radius-16: 16px;
+  --border-radius-8: 8px;
+}

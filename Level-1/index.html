@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dicer</title>
+
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="styles/style.css">
+  <link rel="stylesheet" href="styles/utils.css">
+  <link rel="stylesheet" href="styles/var.css">
+</head>
+
+<body>
+  <div id="body-wrapper" class="
+          d-flex justify-center align-center
+          height-100vh">
+    <div id="main-container" class="d-flex justify-center overflow-hidden p-relative shadow-1">
+
+      <div class="dice-items p-absolute d-flex justify-around align-center height-100 flex-col">
+        <div class="live-score score-font">
+          0
+        </div>
+
+        <div id="dice" class="padd-1">
+
+          <div class="dice d-none" id="dice-1">
+            <div class="dice-row-center height-100">
+              <div class="dice-dot"></div>
+            </div>
+          </div>
+  
+          <div class="dice d-none" id="dice-2">
+            <div class="dice-row-left height-50">
+              <div class="dice-dot"></div>
+            </div>
+            <div class="dice-row-right height-50">
+              <div class="dice-dot"></div>
+            </div>
+          </div>
+  
+          <div class="dice d-none" id="dice-3">
+            <div class="dice-row-left height-33">
+              <div class="dice-dot"></div>
+            </div>
+            <div class="dice-row-center height-33">
+              <div class="dice-dot"></div>
+            </div>
+            <div class="dice-row-right height-33">
+              <div class="dice-dot"></div>
+            </div>
+          </div>
+  
+          <div class="dice d-none" id="dice-4">
+            <div class="dice-row-top height-50">
+              <div class="dice-dot"></div>
+              <div class="dice-dot"></div>
+            </div>
+            <div class="dice-row-bot height-50">
+              <div class="dice-dot"></div>
+              <div class="dice-dot"></div>
+            </div>
+          </div>
+  
+          <div class="dice d-none" id="dice-5">
+            <div class="dice-row-top height-33">
+              <div class="dice-dot"></div>
+              <div class="dice-dot"></div>
+            </div>
+            <div class="dice-row-center height-33">
+              <div class="dice-dot"></div>
+            </div>
+            <div class="dice-row-bot height-33">
+              <div class="dice-dot"></div>
+              <div class="dice-dot"></div>
+            </div>
+          </div>
+  
+          <div class="dice" id="dice-6">
+            <div class="dice-row-top height-33">
+              <div class="dice-dot"></div>
+              <div class="dice-dot"></div>
+            </div>
+            <div class="dice-row height-33">
+              <div class="dice-dot"></div>
+              <div class="dice-dot"></div>
+            </div>
+            <div class="dice-row-bot height-33">
+              <div class="dice-dot"></div>
+              <div class="dice-dot"></div>
+            </div>
+          </div>
+        </div>
+  
+        <div class="buttons d-flex gap-0 justify-between align-center overflow-hidden">
+          <a href="#" class="btn hold width-50 text-center align-self" id="btn-hold">Hold</a>
+          <a href="#" class="btn roll width-50 text-center align-self" id="btn-roll">Roll</a>
+        </div>
+      </div>
+
+      <div id="left-player" class="d-flex justify-center align-center width-50 height-100">
+        <div>
+          <div class="player-score score-font height-100">
+            0
+          </div>
+        </div>
+      </div>
+
+      <div id="right-player" class="d-flex justify-center align-center width-50 height-100">
+        <div>
+          <div class="player-score score-font height-100">
+            0
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <!-- JS -->
+  <script src="script.js"></script>
+</body>
+
+</html>
