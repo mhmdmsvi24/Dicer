@@ -15,8 +15,28 @@
   justify-content: space-around;
 }
 
+.justify-between {
+  justify-content: space-between;
+}
+
+.justify-start {
+  justify-content: flex-start;
+}
+
+.justify-end {
+  justify-content: flex-end;
+}
+
 .align-center {
   align-items: center;
+}
+
+.align-start {
+  align-items: flex-start;
+}
+
+.align-end {
+  align-items: flex-end;
 }
 
 .gap-0 {
@@ -89,6 +109,6 @@
 
 /* Shadow */
 
-.shadow-1 {
-  box-shadow: 0 0 50px 1px rgb(49, 47, 47);
+.shadow {
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
 }

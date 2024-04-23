@@ -11,22 +11,33 @@ function clearDice() {
 // get the dice based on randNum function and toggle it
 function getDice(num) {
   clearDice();
-  const dice = document.getElementById(`dice-${num()}`);
+  const dice = document.getElementById(`dice-${num}`);
   dice.classList.toggle("d-none");
+
+  updatePlayer(rightPlayer, num)
+}
+
+function updatePlayer(player, num) {
+  player.roundScore += num;
+  liveScore.textContent = player.roundScore;
 }
 
 // Roll button
 const holdBtn = document.getElementById("btn-hold");
 const rollBtn = document.getElementById("btn-roll");
 
-rollBtn.addEventListener("click", () => getDice(randNum));
+rollBtn.addEventListener("click", () => getDice(randNum()));
 
+// Scores
+const liveScore = document.getElementById("live-score");
 
 // Players
 const leftPlayer = {
-
+  roundScore: 0,
+  finalScore: 0
 }
 
 const rightPlayer = {
-  
+  roundScore: 0,
+  finalScore: 0
 }
