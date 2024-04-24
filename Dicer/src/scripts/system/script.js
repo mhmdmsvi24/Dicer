@@ -1,23 +1,8 @@
-// Game Logic (Roll, Hold, Scores)
+// utils
+import { randNum } from "../utilities/utils";
 
-// Players
-const redPlayer = {
-  name: "red",
-  pos: "left",
-  score: 0,
-  scoreLink: document.getElementById("left-score"),
-  turn: true,
-  id: document.getElementById("left-player")
-};
-
-const bluePlayer = {
-  name: "blue",
-  pos: "right",
-  score: 0,
-  scoreLink: document.getElementById("right-score"),
-  turn: false,
-  id: document.getElementById("right-player")
-};
+// entities (players, board, game envirnoment)
+import { redPlayer, bluePlayer } from "../entities/entity";
 
 const players = [redPlayer, bluePlayer];
 switchPlayers(players);
@@ -49,8 +34,6 @@ function clearLiveScore() {
   liveScore.textContent = currentLiveScore;
   switchPlayers(players);
 }
-
-const randNum = () => Math.trunc(Math.random() * 6) + 1;
 
 // Live Score
 const liveScore = document.getElementById("live-score");
