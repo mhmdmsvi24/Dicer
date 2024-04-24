@@ -5,13 +5,22 @@ const redPlayer = {
   name: "red",
   pos: "left",
   score: 0,
+  scoreLink: document.getElementById("left-score"),
+  turn: true,
+  id: document.getElementById("left-player")
 };
 
 const bluePlayer = {
   name: "blue",
   pos: "right",
   score: 0,
+  scoreLink: document.getElementById("right-score"),
+  turn: false,
+  id: document.getElementById("right-player")
 };
+
+const players = [redPlayer, bluePlayer];
+switchPlayers(players);
 
 // Roll
 const rollBtn = document.getElementById("btn-roll");
@@ -38,6 +47,7 @@ function clearDice() {
 function clearLiveScore() {
   currentLiveScore = 0;
   liveScore.textContent = currentLiveScore;
+  switchPlayers(players);
 }
 
 const randNum = () => Math.trunc(Math.random() * 6) + 1;
@@ -45,9 +55,37 @@ const randNum = () => Math.trunc(Math.random() * 6) + 1;
 // Live Score
 const liveScore = document.getElementById("live-score");
 let currentLiveScore = 0;
-
 liveScore.textContent = currentLiveScore;
+
 function showLive(score) {
   currentLiveScore += score;
   liveScore.textContent = currentLiveScore;
+}
+
+
+// Current Player (player turns)
+function switchPlayers(players) {
+  players.map((player) => {
+    if (player.turn) {
+      player.id.classList.remove("opacity-50");
+      player.turn = false;
+    } else {
+      player.id.classList.add("opacity-50");
+      player.turn = true;
+    }
+  })
+}
+
+// Hold functionality
+const holdBtn = document.getElementById("btn-hold");
+holdBtn.addEventListener("click", () => holdScore(currentLiveScore));
+
+redPlayer.scoreLink.textContent = redPlayer.score;
+bluePlayer.scoreLink.textContent = bluePlayer.score;
+
+function holdScore(score) {
+  const currentPlayer = redPlayer.turn !== true ? redPlayer : bluePlayer;
+  currentPlayer.score += score;
+  currentPlayer.scoreLink.textContent = currentPlayer.score;
+  clearLiveScore();
 }
