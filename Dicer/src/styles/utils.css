@@ -1,0 +1,125 @@
+/* Flex-box */
+.d-flex {
+  display: flex;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.justify-around {
+  justify-content: space-around;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.justify-start {
+  justify-content: flex-start;
+}
+
+.justify-end {
+  justify-content: flex-end;
+}
+
+.align-center {
+  align-items: center;
+}
+
+.align-start {
+  align-items: flex-start;
+}
+
+.align-end {
+  align-items: flex-end;
+}
+
+.gap-0 {
+  gap: 0.1rem
+}
+
+/* Height */
+.height-100vh {
+  height: 100vh;
+}
+
+.height-100 {
+  height: 100%;
+}
+
+.height-50 {
+  height: 50%;
+}
+
+.height-33 {
+  height: calc(100% / 3);
+}
+
+/* Width */
+.width-50 {
+  width: 50%;
+}
+
+.width-33 {
+  width: calc(100% / 3);
+}
+
+/* Padding */
+.padd-1 {
+  padding: 1rem;
+}
+
+/* overflow */
+.overflow-hidden {
+  overflow: hidden;
+}
+
+/* Position */
+.p-absolute {
+  position: absolute;
+}
+
+.p-relative {
+  position: relative;
+}
+
+/* Display */
+.d-none {
+  display: none;
+}
+
+.d-block {
+  display: block;
+}
+
+/* Border */
+.border-round {
+  border-radius: 50%;
+}
+
+/* Font/Text */
+.text-center {
+  text-align: center;
+}
+
+/* Shadow */
+
+.shadow {
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Opacity */
+.opacity-50 {
+  opacity: 0.5;
+}
+
+
+/* z-index */
+.z-index-1 {
+  z-index: 1;
+}

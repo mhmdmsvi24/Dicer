@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dicer</title>
+</head>
+
+<body>
+  <div id="body-wrapper" class="
+          d-flex justify-center align-center
+          height-100vh">
+    <div id="main-container" class="d-flex justify-center overflow-hidden p-relative shadow">
+
+      <div class="dice-items p-absolute d-flex justify-around align-center height-100 flex-col z-index-1">
+        <div class="player-live-score score-font shadow" id="live-score">
+          
+        </div>
+
+        <div id="dice" class="padd-1 shadow">
+          <div class="height-100 d-none" id="dice-1">
+            <div class="d-flex justify-center align-center height-100">
+              <div class="dice-dot border-round"></div>
+            </div>
+          </div>
+
+          <div class="height-100 d-none" id="dice-2">
+            <div class="d-flex justify-start align-start height-50">
+              <div class="dice-dot border-round"></div>
+            </div>
+            <div class="d-flex justify-end align-end height-50">
+              <div class="dice-dot border-round"></div>
+            </div>
+          </div>
+
+          <div class="height-100 d-none" id="dice-3">
+            <div class="d-flex justify-start align-start height-33">
+              <div class="dice-dot border-round"></div>
+            </div>
+            <div class="d-flex justify-center align-center height-33">
+              <div class="dice-dot border-round"></div>
+            </div>
+            <div class="d-flex justify-end align-end height-33">
+              <div class="dice-dot border-round"></div>
+            </div>
+          </div>
+
+          <div class="height-100 d-none" id="dice-4">
+            <div class="d-flex justify-between align-start height-50">
+              <div class="dice-dot border-round"></div>
+              <div class="dice-dot border-round"></div>
+            </div>
+            <div class="d-flex justify-between align-end height-50">
+              <div class="dice-dot border-round"></div>
+              <div class="dice-dot border-round"></div>
+            </div>
+          </div>
+
+          <div class="height-100 d-none" id="dice-5">
+            <div class="d-flex justify-between align-start height-33">
+              <div class="dice-dot border-round"></div>
+              <div class="dice-dot border-round"></div>
+            </div>
+            <div class="d-flex justify-center align-center height-33">
+              <div class="dice-dot border-round"></div>
+            </div>
+            <div class="d-flex justify-between align-end height-33">
+              <div class="dice-dot border-round"></div>
+              <div class="dice-dot border-round"></div>
+            </div>
+          </div>
+
+          <div class="height-100" id="dice-6">
+            <div class="d-flex justify-between align-start height-33">
+              <div class="dice-dot border-round"></div>
+              <div class="dice-dot border-round"></div>
+            </div>
+            <div class="d-flex justify-between align-center height-33">
+              <div class="dice-dot border-round"></div>
+              <div class="dice-dot border-round"></div>
+            </div>
+            <div class="d-flex justify-between align-end height-33">
+              <div class="dice-dot border-round"></div>
+              <div class="dice-dot border-round"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="buttons d-flex gap-0 justify-between align-center shadow border-round">
+          <a href="#" class="btn hold width-50 height-100 text-center align-self" id="btn-hold">Hold</a>
+          <a href="#" class="btn roll width-50 height-100 text-center align-self" id="btn-roll">Roll</a>
+        </div>
+      </div>
+
+      <div id="left-player" class="d-flex justify-center align-center width-50 height-100">
+        <div>
+          <div class="player-score score-font height-100" id="left-score">
+          
+          </div>
+        </div>
+      </div>
+
+      <div id="right-player" class="d-flex justify-center align-center width-50 height-100">
+        <div>
+          <div class="player-score score-font height-100" id="right-score">
+          
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</body>
+
+</html>
