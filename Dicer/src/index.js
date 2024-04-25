@@ -25,5 +25,5 @@ holdBtn.addEventListener("click", () =>
   Score.holdScore(Score.currentLiveScore)
 );
 
-redPlayer.scoreLink.textContent = Player.redPlayer.score;
-bluePlayer.scoreLink.textContent = Player.bluePlayer.score;
+Player.redPlayer.scoreLink.textContent = Player.redPlayer.score;
+Player.bluePlayer.scoreLink.textContent = Player.bluePlayer.score;
