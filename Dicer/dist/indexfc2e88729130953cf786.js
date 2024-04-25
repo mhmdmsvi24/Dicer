@@ -1038,10 +1038,20 @@ var rollBtn = document.getElementById("btn-roll");
 rollBtn.addEventListener("click", function () {
   return roll(_scripts_utilities_utils__WEBPACK_IMPORTED_MODULE_0__.randNum);
 });
+//
+var dices = {
+  1: document.getElementById("dice-1"),
+  2: document.getElementById("dice-2"),
+  3: document.getElementById("dice-3"),
+  4: document.getElementById("dice-4"),
+  5: document.getElementById("dice-5"),
+  6: document.getElementById("dice-6")
+};
+//
 function roll(randNum) {
   var score = randNum();
   clearDice();
-  var diceToShow = document.getElementById("dice-".concat(score));
+  var diceToShow = dices[score];
   diceToShow.classList.remove("d-none");
 
   // if dice 1 occurence happend clearLiveScore, else liveScore += score
@@ -1101,4 +1111,4 @@ function holdScore(score) {
 
 /******/ })()
 ;
-//# sourceMappingURL=index96b688f352f023ef1586.js.map
+//# sourceMappingURL=indexfc2e88729130953cf786.js.map

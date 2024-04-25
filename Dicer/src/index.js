@@ -4,7 +4,6 @@ import { randNum } from "./scripts/utilities/utils";
 // entities (players, board, game envirnoment)
 import { redPlayer, bluePlayer } from "./scripts/entities/entity";
 
-
 // CSS
 import "./styles/style.css";
 import "./styles/utils.css";
@@ -23,10 +22,19 @@ switchPlayers(players);
 const rollBtn = document.getElementById("btn-roll");
 rollBtn.addEventListener("click", () => roll(randNum));
 
+const dices = {
+  1: document.getElementById("dice-1"),
+  2: document.getElementById("dice-2"),
+  3: document.getElementById("dice-3"),
+  4: document.getElementById("dice-4"),
+  5: document.getElementById("dice-5"),
+  6: document.getElementById("dice-6"),
+};
+
 function roll(randNum) {
   const score = randNum();
   clearDice();
-  const diceToShow = document.getElementById(`dice-${score}`);
+  const diceToShow = dices[score];
   diceToShow.classList.remove("d-none");
 
   // if dice 1 occurence happend clearLiveScore, else liveScore += score
@@ -57,7 +65,6 @@ function showLive(score) {
   liveScore.textContent = currentLiveScore;
 }
 
-
 // Current Player (player turns)
 function switchPlayers(players) {
   players.map((player) => {
@@ -68,7 +75,7 @@ function switchPlayers(players) {
       player.id.classList.add("opacity-50");
       player.turn = true;
     }
-  })
+  });
 }
 
 // Hold functionality
