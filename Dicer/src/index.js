@@ -10,6 +10,12 @@ import "./styles/style.css";
 import "./styles/utils.css";
 import "./styles/var.css";
 
+// Assest
+import choaticNight from "./assets/images/choatic-night-moon.jpg";
+const bodyWrapper = document.getElementById("body-wrapper");
+bodyWrapper.style.backgroundImage = `url(${choaticNight})`;
+bodyWrapper.classList.add("bg-img");
+
 const players = [redPlayer, bluePlayer];
 switchPlayers(players);
 
