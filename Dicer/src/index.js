@@ -2,7 +2,13 @@
 import { randNum } from "./scripts/utilities/utils";
 
 // entities (players, board, game envirnoment)
-import { redPlayer, bluePlayer } from "./scripts/entities/entity";
+import * as Player from "./scripts/entities/players";
+
+// Score
+import * as Score from "./scripts/components/score";
+
+// dice component
+import { roll } from "./scripts/components/dice";
 
 // CSS
 import "./styles/style.css";
@@ -15,79 +21,15 @@ const bodyWrapper = document.getElementById("body-wrapper");
 bodyWrapper.style.backgroundImage = `url(${choaticNight})`;
 bodyWrapper.classList.add("bg-img");
 
-const players = [redPlayer, bluePlayer];
-switchPlayers(players);
+Player.switchPlayers(Player.players);
 
 // Roll
 const rollBtn = document.getElementById("btn-roll");
 rollBtn.addEventListener("click", () => roll(randNum));
 
-const dices = {
-  1: document.getElementById("dice-1"),
-  2: document.getElementById("dice-2"),
-  3: document.getElementById("dice-3"),
-  4: document.getElementById("dice-4"),
-  5: document.getElementById("dice-5"),
-  6: document.getElementById("dice-6"),
-};
-
-function roll(randNum) {
-  const score = randNum();
-  clearDice();
-  const diceToShow = dices[score];
-  diceToShow.classList.remove("d-none");
-
-  // if dice 1 occurence happend clearLiveScore, else liveScore += score
-  score !== 1 ? showLive(score) : clearLiveScore();
-}
-
-// clear the dice (d-none)
-function clearDice() {
-  for (let i = 1; i <= 6; i += 1) {
-    document.getElementById(`dice-${i}`).classList.add("d-none");
-  }
-}
-
-// clear the liveScore (currentLiveScore = 0)
-function clearLiveScore() {
-  currentLiveScore = 0;
-  liveScore.textContent = currentLiveScore;
-  switchPlayers(players);
-}
-
-// Live Score
-const liveScore = document.getElementById("live-score");
-let currentLiveScore = 0;
-liveScore.textContent = currentLiveScore;
-
-function showLive(score) {
-  currentLiveScore += score;
-  liveScore.textContent = currentLiveScore;
-}
-
-// Current Player (player turns)
-function switchPlayers(players) {
-  players.map((player) => {
-    if (player.turn) {
-      player.id.classList.remove("opacity-50");
-      player.turn = false;
-    } else {
-      player.id.classList.add("opacity-50");
-      player.turn = true;
-    }
-  });
-}
-
 // Hold functionality
 const holdBtn = document.getElementById("btn-hold");
-holdBtn.addEventListener("click", () => holdScore(currentLiveScore));
+holdBtn.addEventListener("click", () => Score.holdScore(Score.currentLiveScore));
 
-redPlayer.scoreLink.textContent = redPlayer.score;
-bluePlayer.scoreLink.textContent = bluePlayer.score;
-
-function holdScore(score) {
-  const currentPlayer = redPlayer.turn !== true ? redPlayer : bluePlayer;
-  currentPlayer.score += score;
-  currentPlayer.scoreLink.textContent = currentPlayer.score;
-  clearLiveScore();
-}
+redPlayer.scoreLink.textContent = Player.redPlayer.score;
+bluePlayer.scoreLink.textContent = Player.bluePlayer.score;

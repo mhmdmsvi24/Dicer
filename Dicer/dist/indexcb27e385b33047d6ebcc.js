@@ -2,6 +2,45 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./src/scripts/components/dice.js":
+/*!****************************************!*\
+  !*** ./src/scripts/components/dice.js ***!
+  \****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   clearDice: () => (/* binding */ clearDice),
+/* harmony export */   roll: () => (/* binding */ roll)
+/* harmony export */ });
+var dices = {
+  1: document.getElementById("dice-1"),
+  2: document.getElementById("dice-2"),
+  3: document.getElementById("dice-3"),
+  4: document.getElementById("dice-4"),
+  5: document.getElementById("dice-5"),
+  6: document.getElementById("dice-6")
+};
+function roll(randNum) {
+  var score = randNum();
+  clearDice();
+  var diceToShow = dices[score];
+  diceToShow.classList.remove("d-none");
+
+  // if dice 1 occurence happend clearLiveScore, else liveScore += score
+  score !== 1 ? showLive(score) : clearLiveScore();
+}
+
+// clear the dice (d-none)
+function clearDice() {
+  for (var i = 1; i <= 6; i += 1) {
+    document.getElementById("dice-".concat(i)).classList.add("d-none");
+  }
+}
+
+
+/***/ }),
+
 /***/ "./src/scripts/entities/entity.js":
 /*!****************************************!*\
   !*** ./src/scripts/entities/entity.js ***!
@@ -1010,14 +1049,18 @@ var __webpack_exports__ = {};
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _scripts_utilities_utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./scripts/utilities/utils */ "./src/scripts/utilities/utils.js");
 /* harmony import */ var _scripts_entities_entity__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./scripts/entities/entity */ "./src/scripts/entities/entity.js");
-/* harmony import */ var _styles_style_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./styles/style.css */ "./src/styles/style.css");
-/* harmony import */ var _styles_utils_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./styles/utils.css */ "./src/styles/utils.css");
-/* harmony import */ var _styles_var_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./styles/var.css */ "./src/styles/var.css");
-/* harmony import */ var _assets_images_choatic_night_moon_jpg__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./assets/images/choatic-night-moon.jpg */ "./src/assets/images/choatic-night-moon.jpg");
+/* harmony import */ var _scripts_components_dice__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./scripts/components/dice */ "./src/scripts/components/dice.js");
+/* harmony import */ var _styles_style_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./styles/style.css */ "./src/styles/style.css");
+/* harmony import */ var _styles_utils_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./styles/utils.css */ "./src/styles/utils.css");
+/* harmony import */ var _styles_var_css__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./styles/var.css */ "./src/styles/var.css");
+/* harmony import */ var _assets_images_choatic_night_moon_jpg__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./assets/images/choatic-night-moon.jpg */ "./src/assets/images/choatic-night-moon.jpg");
 // utils
 
 
 // entities (players, board, game envirnoment)
+
+
+// dice component
 
 
 // CSS
@@ -1028,7 +1071,7 @@ __webpack_require__.r(__webpack_exports__);
 // Assest
 
 var bodyWrapper = document.getElementById("body-wrapper");
-bodyWrapper.style.backgroundImage = "url(".concat(_assets_images_choatic_night_moon_jpg__WEBPACK_IMPORTED_MODULE_5__, ")");
+bodyWrapper.style.backgroundImage = "url(".concat(_assets_images_choatic_night_moon_jpg__WEBPACK_IMPORTED_MODULE_6__, ")");
 bodyWrapper.classList.add("bg-img");
 var players = [_scripts_entities_entity__WEBPACK_IMPORTED_MODULE_1__.redPlayer, _scripts_entities_entity__WEBPACK_IMPORTED_MODULE_1__.bluePlayer];
 switchPlayers(players);
@@ -1036,34 +1079,8 @@ switchPlayers(players);
 // Roll
 var rollBtn = document.getElementById("btn-roll");
 rollBtn.addEventListener("click", function () {
-  return roll(_scripts_utilities_utils__WEBPACK_IMPORTED_MODULE_0__.randNum);
+  return (0,_scripts_components_dice__WEBPACK_IMPORTED_MODULE_2__.roll)(_scripts_utilities_utils__WEBPACK_IMPORTED_MODULE_0__.randNum);
 });
-//
-var dices = {
-  1: document.getElementById("dice-1"),
-  2: document.getElementById("dice-2"),
-  3: document.getElementById("dice-3"),
-  4: document.getElementById("dice-4"),
-  5: document.getElementById("dice-5"),
-  6: document.getElementById("dice-6")
-};
-//
-function roll(randNum) {
-  var score = randNum();
-  clearDice();
-  var diceToShow = dices[score];
-  diceToShow.classList.remove("d-none");
-
-  // if dice 1 occurence happend clearLiveScore, else liveScore += score
-  score !== 1 ? showLive(score) : clearLiveScore();
-}
-
-// clear the dice (d-none)
-function clearDice() {
-  for (var i = 1; i <= 6; i += 1) {
-    document.getElementById("dice-".concat(i)).classList.add("d-none");
-  }
-}
 
 // clear the liveScore (currentLiveScore = 0)
 function clearLiveScore() {
@@ -1111,4 +1128,4 @@ function holdScore(score) {
 
 /******/ })()
 ;
-//# sourceMappingURL=indexfc2e88729130953cf786.js.map
+//# sourceMappingURL=indexcb27e385b33047d6ebcc.js.map
