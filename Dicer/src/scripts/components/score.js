@@ -18,7 +18,8 @@ function showLive(score) {
 }
 
 function holdScore(score) {
-  const currentPlayer = Player.redPlayer.turn !== true ? Player.redPlayer : Player.bluePlayer;
+  const currentPlayer =
+    Player.redPlayer.turn !== true ? Player.redPlayer : Player.bluePlayer;
   currentPlayer.score += score;
   currentPlayer.scoreLink.textContent = currentPlayer.score;
   clearLiveScore();

@@ -1,8 +1,5 @@
-// utils
-import { randNum } from "../utilities/utils";
-
-// entities (players, board, game envirnoment)
 import { redPlayer, bluePlayer } from "../entities/entity";
+import { randNum } from "../utilities/utils";
 
 const players = [redPlayer, bluePlayer];
 switchPlayers(players);
@@ -45,7 +42,6 @@ function showLive(score) {
   liveScore.textContent = currentLiveScore;
 }
 
-
 // Current Player (player turns)
 function switchPlayers(players) {
   players.map((player) => {
@@ -56,7 +52,7 @@ function switchPlayers(players) {
       player.id.classList.add("opacity-50");
       player.turn = true;
     }
-  })
+  });
 }
 
 // Hold functionality

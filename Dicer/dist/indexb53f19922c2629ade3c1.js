@@ -13,6 +13,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   clearDice: () => (/* binding */ clearDice),
 /* harmony export */   roll: () => (/* binding */ roll)
 /* harmony export */ });
+/* harmony import */ var _score__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./score */ "./src/scripts/components/score.js");
+
 var dices = {
   1: document.getElementById("dice-1"),
   2: document.getElementById("dice-2"),
@@ -28,7 +30,7 @@ function roll(randNum) {
   diceToShow.classList.remove("d-none");
 
   // if dice 1 occurence happend clearLiveScore, else liveScore += score
-  score !== 1 ? showLive(score) : clearLiveScore();
+  score !== 1 ? (0,_score__WEBPACK_IMPORTED_MODULE_0__.showLive)(score) : (0,_score__WEBPACK_IMPORTED_MODULE_0__.clearLiveScore)();
 }
 
 // clear the dice (d-none)
@@ -41,16 +43,59 @@ function clearDice() {
 
 /***/ }),
 
-/***/ "./src/scripts/entities/entity.js":
-/*!****************************************!*\
-  !*** ./src/scripts/entities/entity.js ***!
-  \****************************************/
+/***/ "./src/scripts/components/score.js":
+/*!*****************************************!*\
+  !*** ./src/scripts/components/score.js ***!
+  \*****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   clearLiveScore: () => (/* binding */ clearLiveScore),
+/* harmony export */   currentLiveScore: () => (/* binding */ currentLiveScore),
+/* harmony export */   holdScore: () => (/* binding */ holdScore),
+/* harmony export */   showLive: () => (/* binding */ showLive)
+/* harmony export */ });
+/* harmony import */ var _entities_players__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../entities/players */ "./src/scripts/entities/players.js");
+
+
+// clear the liveScore (currentLiveScore = 0)
+function clearLiveScore() {
+  currentLiveScore = 0;
+  liveScore.textContent = currentLiveScore;
+  _entities_players__WEBPACK_IMPORTED_MODULE_0__.switchPlayers(_entities_players__WEBPACK_IMPORTED_MODULE_0__.players);
+}
+
+// Live Score
+var liveScore = document.getElementById("live-score");
+var currentLiveScore = 0;
+liveScore.textContent = currentLiveScore;
+function showLive(score) {
+  currentLiveScore += score;
+  liveScore.textContent = currentLiveScore;
+}
+function holdScore(score) {
+  var currentPlayer = _entities_players__WEBPACK_IMPORTED_MODULE_0__.redPlayer.turn !== true ? _entities_players__WEBPACK_IMPORTED_MODULE_0__.redPlayer : _entities_players__WEBPACK_IMPORTED_MODULE_0__.bluePlayer;
+  currentPlayer.score += score;
+  currentPlayer.scoreLink.textContent = currentPlayer.score;
+  clearLiveScore();
+}
+
+
+/***/ }),
+
+/***/ "./src/scripts/entities/players.js":
+/*!*****************************************!*\
+  !*** ./src/scripts/entities/players.js ***!
+  \*****************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   bluePlayer: () => (/* binding */ bluePlayer),
-/* harmony export */   redPlayer: () => (/* binding */ redPlayer)
+/* harmony export */   players: () => (/* binding */ players),
+/* harmony export */   redPlayer: () => (/* binding */ redPlayer),
+/* harmony export */   switchPlayers: () => (/* binding */ switchPlayers)
 /* harmony export */ });
 // Players
 var redPlayer = {
@@ -69,6 +114,20 @@ var bluePlayer = {
   turn: false,
   id: document.getElementById("right-player")
 };
+var players = [redPlayer, bluePlayer];
+
+// Current Player (player turns)
+function switchPlayers(players) {
+  players.map(function (player) {
+    if (player.turn) {
+      player.id.classList.remove("opacity-50");
+      player.turn = false;
+    } else {
+      player.id.classList.add("opacity-50");
+      player.turn = true;
+    }
+  });
+}
 
 
 /***/ }),
@@ -920,16 +979,6 @@ function styleTagTransform(css, styleElement) {
 }
 module.exports = styleTagTransform;
 
-/***/ }),
-
-/***/ "./src/assets/images/choatic-night-moon.jpg":
-/*!**************************************************!*\
-  !*** ./src/assets/images/choatic-night-moon.jpg ***!
-  \**************************************************/
-/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
-
-module.exports = __webpack_require__.p + "choatic-night-moon.jpg";
-
 /***/ })
 
 /******/ 	});
@@ -983,18 +1032,6 @@ module.exports = __webpack_require__.p + "choatic-night-moon.jpg";
 /******/ 		};
 /******/ 	})();
 /******/ 	
-/******/ 	/* webpack/runtime/global */
-/******/ 	(() => {
-/******/ 		__webpack_require__.g = (function() {
-/******/ 			if (typeof globalThis === 'object') return globalThis;
-/******/ 			try {
-/******/ 				return this || new Function('return this')();
-/******/ 			} catch (e) {
-/******/ 				if (typeof window === 'object') return window;
-/******/ 			}
-/******/ 		})();
-/******/ 	})();
-/******/ 	
 /******/ 	/* webpack/runtime/hasOwnProperty shorthand */
 /******/ 	(() => {
 /******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
@@ -1011,29 +1048,6 @@ module.exports = __webpack_require__.p + "choatic-night-moon.jpg";
 /******/ 		};
 /******/ 	})();
 /******/ 	
-/******/ 	/* webpack/runtime/publicPath */
-/******/ 	(() => {
-/******/ 		var scriptUrl;
-/******/ 		if (__webpack_require__.g.importScripts) scriptUrl = __webpack_require__.g.location + "";
-/******/ 		var document = __webpack_require__.g.document;
-/******/ 		if (!scriptUrl && document) {
-/******/ 			if (document.currentScript)
-/******/ 				scriptUrl = document.currentScript.src;
-/******/ 			if (!scriptUrl) {
-/******/ 				var scripts = document.getElementsByTagName("script");
-/******/ 				if(scripts.length) {
-/******/ 					var i = scripts.length - 1;
-/******/ 					while (i > -1 && (!scriptUrl || !/^http(s?):/.test(scriptUrl))) scriptUrl = scripts[i--].src;
-/******/ 				}
-/******/ 			}
-/******/ 		}
-/******/ 		// When supporting browsers where an automatic publicPath is not supported you must specify an output.publicPath manually via configuration
-/******/ 		// or pass an empty string ("") and set the __webpack_public_path__ variable from your code to use your own logic.
-/******/ 		if (!scriptUrl) throw new Error("Automatic publicPath is not supported in this browser");
-/******/ 		scriptUrl = scriptUrl.replace(/#.*$/, "").replace(/\?.*$/, "").replace(/\/[^\/]+$/, "/");
-/******/ 		__webpack_require__.p = scriptUrl;
-/******/ 	})();
-/******/ 	
 /******/ 	/* webpack/runtime/nonce */
 /******/ 	(() => {
 /******/ 		__webpack_require__.nc = undefined;
@@ -1047,85 +1061,45 @@ var __webpack_exports__ = {};
   !*** ./src/index.js ***!
   \**********************/
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _scripts_utilities_utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./scripts/utilities/utils */ "./src/scripts/utilities/utils.js");
-/* harmony import */ var _scripts_entities_entity__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./scripts/entities/entity */ "./src/scripts/entities/entity.js");
-/* harmony import */ var _scripts_components_dice__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./scripts/components/dice */ "./src/scripts/components/dice.js");
-/* harmony import */ var _styles_style_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./styles/style.css */ "./src/styles/style.css");
-/* harmony import */ var _styles_utils_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./styles/utils.css */ "./src/styles/utils.css");
-/* harmony import */ var _styles_var_css__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./styles/var.css */ "./src/styles/var.css");
-/* harmony import */ var _assets_images_choatic_night_moon_jpg__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./assets/images/choatic-night-moon.jpg */ "./src/assets/images/choatic-night-moon.jpg");
-// utils
+/* harmony import */ var _styles_style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./styles/style.css */ "./src/styles/style.css");
+/* harmony import */ var _styles_utils_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./styles/utils.css */ "./src/styles/utils.css");
+/* harmony import */ var _styles_var_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./styles/var.css */ "./src/styles/var.css");
+/* harmony import */ var _scripts_entities_players__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./scripts/entities/players */ "./src/scripts/entities/players.js");
+/* harmony import */ var _scripts_utilities_utils__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./scripts/utilities/utils */ "./src/scripts/utilities/utils.js");
+/* harmony import */ var _scripts_components_score__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./scripts/components/score */ "./src/scripts/components/score.js");
+/* harmony import */ var _scripts_components_dice__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./scripts/components/dice */ "./src/scripts/components/dice.js");
 
 
-// entities (players, board, game envirnoment)
 
 
-// dice component
+// import choaticNight from "./assets/images/choatic-night-moon.jpg";
 
-
-// CSS
 
 
 
 
 // Assest
+// const bodyWrapper = document.getElementById("body-wrapper");
+// bodyWrapper.style.backgroundImage = `url(${choaticNight})`;
+// bodyWrapper.classList.add("bg-img");
 
-var bodyWrapper = document.getElementById("body-wrapper");
-bodyWrapper.style.backgroundImage = "url(".concat(_assets_images_choatic_night_moon_jpg__WEBPACK_IMPORTED_MODULE_6__, ")");
-bodyWrapper.classList.add("bg-img");
-var players = [_scripts_entities_entity__WEBPACK_IMPORTED_MODULE_1__.redPlayer, _scripts_entities_entity__WEBPACK_IMPORTED_MODULE_1__.bluePlayer];
-switchPlayers(players);
+_scripts_entities_players__WEBPACK_IMPORTED_MODULE_3__.switchPlayers(_scripts_entities_players__WEBPACK_IMPORTED_MODULE_3__.players);
 
 // Roll
 var rollBtn = document.getElementById("btn-roll");
 rollBtn.addEventListener("click", function () {
-  return (0,_scripts_components_dice__WEBPACK_IMPORTED_MODULE_2__.roll)(_scripts_utilities_utils__WEBPACK_IMPORTED_MODULE_0__.randNum);
+  return (0,_scripts_components_dice__WEBPACK_IMPORTED_MODULE_6__.roll)(_scripts_utilities_utils__WEBPACK_IMPORTED_MODULE_4__.randNum);
 });
-
-// clear the liveScore (currentLiveScore = 0)
-function clearLiveScore() {
-  currentLiveScore = 0;
-  liveScore.textContent = currentLiveScore;
-  switchPlayers(players);
-}
-
-// Live Score
-var liveScore = document.getElementById("live-score");
-var currentLiveScore = 0;
-liveScore.textContent = currentLiveScore;
-function showLive(score) {
-  currentLiveScore += score;
-  liveScore.textContent = currentLiveScore;
-}
-
-// Current Player (player turns)
-function switchPlayers(players) {
-  players.map(function (player) {
-    if (player.turn) {
-      player.id.classList.remove("opacity-50");
-      player.turn = false;
-    } else {
-      player.id.classList.add("opacity-50");
-      player.turn = true;
-    }
-  });
-}
 
 // Hold functionality
 var holdBtn = document.getElementById("btn-hold");
 holdBtn.addEventListener("click", function () {
-  return holdScore(currentLiveScore);
+  return _scripts_components_score__WEBPACK_IMPORTED_MODULE_5__.holdScore(_scripts_components_score__WEBPACK_IMPORTED_MODULE_5__.currentLiveScore);
 });
-_scripts_entities_entity__WEBPACK_IMPORTED_MODULE_1__.redPlayer.scoreLink.textContent = _scripts_entities_entity__WEBPACK_IMPORTED_MODULE_1__.redPlayer.score;
-_scripts_entities_entity__WEBPACK_IMPORTED_MODULE_1__.bluePlayer.scoreLink.textContent = _scripts_entities_entity__WEBPACK_IMPORTED_MODULE_1__.bluePlayer.score;
-function holdScore(score) {
-  var currentPlayer = _scripts_entities_entity__WEBPACK_IMPORTED_MODULE_1__.redPlayer.turn !== true ? _scripts_entities_entity__WEBPACK_IMPORTED_MODULE_1__.redPlayer : _scripts_entities_entity__WEBPACK_IMPORTED_MODULE_1__.bluePlayer;
-  currentPlayer.score += score;
-  currentPlayer.scoreLink.textContent = currentPlayer.score;
-  clearLiveScore();
-}
+redPlayer.scoreLink.textContent = _scripts_entities_players__WEBPACK_IMPORTED_MODULE_3__.redPlayer.score;
+bluePlayer.scoreLink.textContent = _scripts_entities_players__WEBPACK_IMPORTED_MODULE_3__.bluePlayer.score;
 })();
 
 /******/ })()
 ;
-//# sourceMappingURL=indexcb27e385b33047d6ebcc.js.map
+//# sourceMappingURL=indexb53f19922c2629ade3c1.js.map

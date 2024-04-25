@@ -5,7 +5,7 @@ const redPlayer = {
   score: 0,
   scoreLink: document.getElementById("left-score"),
   turn: true,
-  id: document.getElementById("left-player")
+  id: document.getElementById("left-player"),
 };
 
 const bluePlayer = {
@@ -14,7 +14,7 @@ const bluePlayer = {
   score: 0,
   scoreLink: document.getElementById("right-score"),
   turn: false,
-  id: document.getElementById("right-player")
+  id: document.getElementById("right-player"),
 };
 
 const players = [redPlayer, bluePlayer];
@@ -32,9 +32,4 @@ function switchPlayers(players) {
   });
 }
 
-export {
-  redPlayer,
-  bluePlayer,
-  players,
-  switchPlayers
-}
+export { redPlayer, bluePlayer, players, switchPlayers };
