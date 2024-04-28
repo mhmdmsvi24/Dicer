@@ -68,3 +68,5 @@ function holdScore(score) {
   currentPlayer.scoreLink.textContent = currentPlayer.score;
   clearLiveScore();
 }
+
+// Players Bar

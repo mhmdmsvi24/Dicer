@@ -22,7 +22,31 @@ function holdScore(score) {
     Player.redPlayer.turn !== true ? Player.redPlayer : Player.bluePlayer;
   currentPlayer.score += score;
   currentPlayer.scoreLink.textContent = currentPlayer.score;
+  checkRound(currentPlayer);
+
   clearLiveScore();
+}
+
+function checkRound(currentPlayer) {
+  const playerScore = currentPlayer.score;
+  if (playerScore >= 20) {
+    currentPlayer.roundsWon += 1;
+    ResetScore(Player.players);
+    addRoundsUI(currentPlayer);
+  }
+}
+
+function ResetScore(players) {
+  players.map((player) => {
+    player.score = 0;
+    player.scoreLink.textContent = 0;
+  })
+}
+
+function addRoundsUI(currentPlayer) {
+  const RoundCircle = document.createElement("div");
+  RoundCircle.classList.add("round-bar", "border-round");
+  currentPlayer.roundLink.append(RoundCircle);
 }
 
 export { clearLiveScore, showLive, holdScore, currentLiveScore };

@@ -2,16 +2,10 @@ import "./styles/style.css";
 import "./styles/utils.css";
 import "./styles/var.css";
 
-// import choaticNight from "./assets/images/choatic-night-moon.jpg";
 import * as Player from "./scripts/entities/players";
 import { randNum } from "./scripts/utilities/utils";
 import * as Score from "./scripts/components/score";
 import { roll } from "./scripts/components/dice";
-
-// Assest
-// const bodyWrapper = document.getElementById("body-wrapper");
-// bodyWrapper.style.backgroundImage = `url(${choaticNight})`;
-// bodyWrapper.classList.add("bg-img");
 
 Player.switchPlayers(Player.players);
 

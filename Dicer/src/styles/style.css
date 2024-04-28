@@ -12,11 +12,16 @@ body {
   font-family: cursive;
 }
 
+#body-wrapper {
+  height: 95vh;
+}
+
 #main-container {
   border-radius: var(--border-radius-8);
   flex: 1;
   max-width: 500px;
   height: 60%;
+  max-height: 500px;
   margin: 1rem;
 }
 
@@ -76,4 +81,18 @@ body {
   height: 50px;
   top: 5%;
   color: var(--color-6);
+}
+
+/* Players Round bar */
+.rounds {
+  top: 0;
+  text-align: left;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.round-bar {
+  width: 15px;
+  height: 15px;
+  background-color: red;
 }

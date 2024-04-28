@@ -6,6 +6,8 @@ const redPlayer = {
   scoreLink: document.getElementById("left-score"),
   turn: true,
   id: document.getElementById("left-player"),
+  roundsWon: 0,
+  roundLink: document.getElementById("left-round"),
 };
 
 const bluePlayer = {
@@ -15,6 +17,8 @@ const bluePlayer = {
   scoreLink: document.getElementById("right-score"),
   turn: false,
   id: document.getElementById("right-player"),
+  roundsWon: 0,
+  roundLink: document.getElementById("right-round"),
 };
 
 const players = [redPlayer, bluePlayer];

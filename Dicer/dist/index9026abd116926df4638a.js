@@ -246,7 +246,22 @@ body {
   height: 50px;
   top: 5%;
   color: var(--color-6);
-}`, "",{"version":3,"sources":["webpack://./src/styles/style.css"],"names":[],"mappings":"AAAA;EACE,sBAAA;EACA,qBAAA;EACA,SAAA;EACA,UAAA;EACA,iBAAA;AACF;;AAEA;EACE,gCAAA;EACA,qBAAA;EACA,oBAAA;AACF;;AAEA;EACE,qCAAA;EACA,OAAA;EACA,gBAAA;EACA,WAAA;EACA,YAAA;AACF;;AAEA;EACE,gCAAA;AACF;;AAEA;EACE,gCAAA;AACF;;AAEA,SAAA;AACA;EACE,gCAAA;EACA,qCAAA;EACA,WAAA;EACA,eAAA;EACA,6BAAA;EACA,oBAAA;AACF;;AAEA;EACE,WAAA;EACA,eAAA;EACA,uBAAA;AACF;;AAEA;EACE,YAAA;EACA,YAAA;AACF;;AAEA;EACE,qBAAA;EACA,gCAAA;EACA,iBAAA;AACF;;AAEA;EACE,gCAAA;AACF;;AAEA;EACE,gCAAA;AACF;;AAEA;EACE,iBAAA;AACF;;AAEA;EACE,qCAAA;EACA,gCAAA;EACA,kBAAA;EACA,iBAAA;EACA,YAAA;EACA,YAAA;EACA,OAAA;EACA,qBAAA;AACF","sourcesContent":["*, *::before, *::after {\r\n  box-sizing: border-box;\r\n  text-decoration: none;\r\n  margin: 0;\r\n  padding: 0;\r\n  user-select: none;\r\n}\r\n\r\nbody {  \r\n  background-color: var(--color-6);\r\n  color: var(--color-3);\r\n  font-family: cursive;\r\n}\r\n\r\n#main-container {\r\n  border-radius: var(--border-radius-8);\r\n  flex: 1;\r\n  max-width: 500px;\r\n  height: 60%;\r\n  margin: 1rem;\r\n}\r\n\r\n#left-player {\r\n  background-color: var(--color-5);\r\n}\r\n\r\n#right-player {\r\n  background-color: var(--color-1);\r\n}\r\n\r\n/* Dice */\r\n#dice {\r\n  background-color: var(--color-3);\r\n  border-radius: var(--border-radius-8);\r\n  width: 85px;\r\n  aspect-ratio: 1;\r\n  border: 2px solid transparent;\r\n  border-style: outset;\r\n}\r\n\r\n.dice-dot {\r\n  width: 12px;\r\n  aspect-ratio: 1;\r\n  background-color: black;\r\n}\r\n\r\n.buttons {\r\n  width: 150px;\r\n  height: 50px;\r\n}\r\n\r\n.btn {\r\n  color: var(--color-6);\r\n  background-color: var(--color-4);\r\n  line-height: 50px;\r\n}\r\n\r\n.hold {\r\n  border-radius: 0.5rem 0 0 0.5rem;\r\n}\r\n\r\n.roll {\r\n  border-radius: 0 0.5rem 0.5rem 0;\r\n}\r\n\r\n.score-font {\r\n  font-size: 1.5rem;\r\n}\r\n\r\n.player-live-score {\r\n  border-radius: var(--border-radius-8);\r\n  background-color: var(--color-4);\r\n  text-align: center;\r\n  line-height: 50px;\r\n  width: 150px;\r\n  height: 50px;\r\n  top: 5%;\r\n  color: var(--color-6);\r\n}"],"sourceRoot":""}]);
+}
+
+/* Players Bar */
+#players-container {
+  padding: 1rem;
+  top: 0%;
+}
+
+.player-wrapper {
+  width: 220px;
+  height: 50px;
+  background-color: var(--color-4);
+  transform: skew(20deg);
+  border-radius: 1rem;
+  clip-path: polygon(0 0, 80% 0, 100% 100%, 0, 100%);
+}`, "",{"version":3,"sources":["webpack://./src/styles/style.css"],"names":[],"mappings":"AAAA;EACE,sBAAA;EACA,qBAAA;EACA,SAAA;EACA,UAAA;EACA,iBAAA;AACF;;AAEA;EACE,gCAAA;EACA,qBAAA;EACA,oBAAA;AACF;;AAEA;EACE,qCAAA;EACA,OAAA;EACA,gBAAA;EACA,WAAA;EACA,YAAA;AACF;;AAEA;EACE,gCAAA;AACF;;AAEA;EACE,gCAAA;AACF;;AAEA,SAAA;AACA;EACE,gCAAA;EACA,qCAAA;EACA,WAAA;EACA,eAAA;EACA,6BAAA;EACA,oBAAA;AACF;;AAEA;EACE,WAAA;EACA,eAAA;EACA,uBAAA;AACF;;AAEA;EACE,YAAA;EACA,YAAA;AACF;;AAEA;EACE,qBAAA;EACA,gCAAA;EACA,iBAAA;AACF;;AAEA;EACE,gCAAA;AACF;;AAEA;EACE,gCAAA;AACF;;AAEA;EACE,iBAAA;AACF;;AAEA;EACE,qCAAA;EACA,gCAAA;EACA,kBAAA;EACA,iBAAA;EACA,YAAA;EACA,YAAA;EACA,OAAA;EACA,qBAAA;AACF;;AAGA,gBAAA;AACA;EACE,aAAA;EACA,OAAA;AAAF;;AAGA;EACE,YAAA;EACA,YAAA;EACA,gCAAA;EACA,sBAAA;EACA,mBAAA;EAEA,kDAAA;AADF","sourcesContent":["*, *::before, *::after {\r\n  box-sizing: border-box;\r\n  text-decoration: none;\r\n  margin: 0;\r\n  padding: 0;\r\n  user-select: none;\r\n}\r\n\r\nbody {  \r\n  background-color: var(--color-6);\r\n  color: var(--color-3);\r\n  font-family: cursive;\r\n}\r\n\r\n#main-container {\r\n  border-radius: var(--border-radius-8);\r\n  flex: 1;\r\n  max-width: 500px;\r\n  height: 60%;\r\n  margin: 1rem;\r\n}\r\n\r\n#left-player {\r\n  background-color: var(--color-5);\r\n}\r\n\r\n#right-player {\r\n  background-color: var(--color-1);\r\n}\r\n\r\n/* Dice */\r\n#dice {\r\n  background-color: var(--color-3);\r\n  border-radius: var(--border-radius-8);\r\n  width: 85px;\r\n  aspect-ratio: 1;\r\n  border: 2px solid transparent;\r\n  border-style: outset;\r\n}\r\n\r\n.dice-dot {\r\n  width: 12px;\r\n  aspect-ratio: 1;\r\n  background-color: black;\r\n}\r\n\r\n.buttons {\r\n  width: 150px;\r\n  height: 50px;\r\n}\r\n\r\n.btn {\r\n  color: var(--color-6);\r\n  background-color: var(--color-4);\r\n  line-height: 50px;\r\n}\r\n\r\n.hold {\r\n  border-radius: 0.5rem 0 0 0.5rem;\r\n}\r\n\r\n.roll {\r\n  border-radius: 0 0.5rem 0.5rem 0;\r\n}\r\n\r\n.score-font {\r\n  font-size: 1.5rem;\r\n}\r\n\r\n.player-live-score {\r\n  border-radius: var(--border-radius-8);\r\n  background-color: var(--color-4);\r\n  text-align: center;\r\n  line-height: 50px;\r\n  width: 150px;\r\n  height: 50px;\r\n  top: 5%;\r\n  color: var(--color-6);\r\n}\r\n\r\n\r\n/* Players Bar */\r\n#players-container {\r\n  padding: 1rem;\r\n  top: 0%;\r\n}\r\n\r\n.player-wrapper {\r\n  width: 220px; \r\n  height: 50px;\r\n  background-color: var(--color-4);\r\n  transform: skew(20deg);\r\n  border-radius: 1rem;\r\n\r\n  clip-path: polygon(\r\n    0 0,\r\n    80% 0,\r\n    100% 100%,\r\n    0, 100%\r\n  );\r\n}\r\n\r\n.player-img-wrapper {\r\n\r\n}\r\n\r\n.player-bar {\r\n\r\n}"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -335,6 +350,10 @@ ___CSS_LOADER_EXPORT___.push([module.id, `/* Flex-box */
 }
 
 /* Width */
+.width-100 {
+  width: 100%;
+}
+
 .width-50 {
   width: 50%;
 }
@@ -360,6 +379,12 @@ ___CSS_LOADER_EXPORT___.push([module.id, `/* Flex-box */
 
 .p-relative {
   position: relative;
+}
+
+.middle {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 /* Display */
@@ -394,7 +419,12 @@ ___CSS_LOADER_EXPORT___.push([module.id, `/* Flex-box */
 /* z-index */
 .z-index-1 {
   z-index: 1;
-}`, "",{"version":3,"sources":["webpack://./src/styles/utils.css"],"names":[],"mappings":"AAAA,aAAA;AACA;EACE,aAAA;AACF;;AAEA;EACE,sBAAA;AACF;;AAEA;EACE,uBAAA;AACF;;AAEA;EACE,6BAAA;AACF;;AAEA;EACE,8BAAA;AACF;;AAEA;EACE,2BAAA;AACF;;AAEA;EACE,yBAAA;AACF;;AAEA;EACE,mBAAA;AACF;;AAEA;EACE,uBAAA;AACF;;AAEA;EACE,qBAAA;AACF;;AAEA;EACE,WAAA;AACF;;AAEA,WAAA;AACA;EACE,aAAA;AACF;;AAEA;EACE,YAAA;AACF;;AAEA;EACE,WAAA;AACF;;AAEA;EACE,sBAAA;AACF;;AAEA,UAAA;AACA;EACE,UAAA;AACF;;AAEA;EACE,qBAAA;AACF;;AAEA,YAAA;AACA;EACE,aAAA;AACF;;AAEA,aAAA;AACA;EACE,gBAAA;AACF;;AAEA,aAAA;AACA;EACE,kBAAA;AACF;;AAEA;EACE,kBAAA;AACF;;AAEA,YAAA;AACA;EACE,aAAA;AACF;;AAEA;EACE,cAAA;AACF;;AAEA,WAAA;AACA;EACE,kBAAA;AACF;;AAEA,cAAA;AACA;EACE,kBAAA;AACF;;AAEA,WAAA;AAEA;EACE,0CAAA;AAAF;;AAGA,YAAA;AACA;EACE,YAAA;AAAF;;AAIA,YAAA;AACA;EACE,UAAA;AADF","sourcesContent":["/* Flex-box */\r\n.d-flex {\r\n  display: flex;\r\n}\r\n\r\n.flex-col {\r\n  flex-direction: column;\r\n}\r\n\r\n.justify-center {\r\n  justify-content: center;\r\n}\r\n\r\n.justify-around {\r\n  justify-content: space-around;\r\n}\r\n\r\n.justify-between {\r\n  justify-content: space-between;\r\n}\r\n\r\n.justify-start {\r\n  justify-content: flex-start;\r\n}\r\n\r\n.justify-end {\r\n  justify-content: flex-end;\r\n}\r\n\r\n.align-center {\r\n  align-items: center;\r\n}\r\n\r\n.align-start {\r\n  align-items: flex-start;\r\n}\r\n\r\n.align-end {\r\n  align-items: flex-end;\r\n}\r\n\r\n.gap-0 {\r\n  gap: 0.1rem\r\n}\r\n\r\n/* Height */\r\n.height-100vh {\r\n  height: 100vh;\r\n}\r\n\r\n.height-100 {\r\n  height: 100%;\r\n}\r\n\r\n.height-50 {\r\n  height: 50%;\r\n}\r\n\r\n.height-33 {\r\n  height: calc(100% / 3);\r\n}\r\n\r\n/* Width */\r\n.width-50 {\r\n  width: 50%;\r\n}\r\n\r\n.width-33 {\r\n  width: calc(100% / 3);\r\n}\r\n\r\n/* Padding */\r\n.padd-1 {\r\n  padding: 1rem;\r\n}\r\n\r\n/* overflow */\r\n.overflow-hidden {\r\n  overflow: hidden;\r\n}\r\n\r\n/* Position */\r\n.p-absolute {\r\n  position: absolute;\r\n}\r\n\r\n.p-relative {\r\n  position: relative;\r\n}\r\n\r\n/* Display */\r\n.d-none {\r\n  display: none;\r\n}\r\n\r\n.d-block {\r\n  display: block;\r\n}\r\n\r\n/* Border */\r\n.border-round {\r\n  border-radius: 50%;\r\n}\r\n\r\n/* Font/Text */\r\n.text-center {\r\n  text-align: center;\r\n}\r\n\r\n/* Shadow */\r\n\r\n.shadow {\r\n  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);\r\n}\r\n\r\n/* Opacity */\r\n.opacity-50 {\r\n  opacity: 0.5;\r\n}\r\n\r\n\r\n/* z-index */\r\n.z-index-1 {\r\n  z-index: 1;\r\n}"],"sourceRoot":""}]);
+}
+
+/* margin */
+.margin-auto {
+  margin: auto;
+}`, "",{"version":3,"sources":["webpack://./src/styles/utils.css"],"names":[],"mappings":"AAAA,aAAA;AACA;EACE,aAAA;AACF;;AAEA;EACE,sBAAA;AACF;;AAEA;EACE,uBAAA;AACF;;AAEA;EACE,6BAAA;AACF;;AAEA;EACE,8BAAA;AACF;;AAEA;EACE,2BAAA;AACF;;AAEA;EACE,yBAAA;AACF;;AAEA;EACE,mBAAA;AACF;;AAEA;EACE,uBAAA;AACF;;AAEA;EACE,qBAAA;AACF;;AAEA;EACE,WAAA;AACF;;AAEA,WAAA;AACA;EACE,aAAA;AACF;;AAEA;EACE,YAAA;AACF;;AAEA;EACE,WAAA;AACF;;AAEA;EACE,sBAAA;AACF;;AAEA,UAAA;AACA;EACE,WAAA;AACF;;AAEA;EACE,UAAA;AACF;;AAEA;EACE,qBAAA;AACF;;AAEA,YAAA;AACA;EACE,aAAA;AACF;;AAEA,aAAA;AACA;EACE,gBAAA;AACF;;AAEA,aAAA;AACA;EACE,kBAAA;AACF;;AAEA;EACE,kBAAA;AACF;;AAEA;EACE,QAAA;EACA,SAAA;EACA,gCAAA;AACF;;AAEA,YAAA;AACA;EACE,aAAA;AACF;;AAEA;EACE,cAAA;AACF;;AAEA,WAAA;AACA;EACE,kBAAA;AACF;;AAEA,cAAA;AACA;EACE,kBAAA;AACF;;AAEA,WAAA;AAEA;EACE,0CAAA;AAAF;;AAGA,YAAA;AACA;EACE,YAAA;AAAF;;AAIA,YAAA;AACA;EACE,UAAA;AADF;;AAIA,WAAA;AACA;EACE,YAAA;AADF","sourcesContent":["/* Flex-box */\r\n.d-flex {\r\n  display: flex;\r\n}\r\n\r\n.flex-col {\r\n  flex-direction: column;\r\n}\r\n\r\n.justify-center {\r\n  justify-content: center;\r\n}\r\n\r\n.justify-around {\r\n  justify-content: space-around;\r\n}\r\n\r\n.justify-between {\r\n  justify-content: space-between;\r\n}\r\n\r\n.justify-start {\r\n  justify-content: flex-start;\r\n}\r\n\r\n.justify-end {\r\n  justify-content: flex-end;\r\n}\r\n\r\n.align-center {\r\n  align-items: center;\r\n}\r\n\r\n.align-start {\r\n  align-items: flex-start;\r\n}\r\n\r\n.align-end {\r\n  align-items: flex-end;\r\n}\r\n\r\n.gap-0 {\r\n  gap: 0.1rem\r\n}\r\n\r\n/* Height */\r\n.height-100vh {\r\n  height: 100vh;\r\n}\r\n\r\n.height-100 {\r\n  height: 100%;\r\n}\r\n\r\n.height-50 {\r\n  height: 50%;\r\n}\r\n\r\n.height-33 {\r\n  height: calc(100% / 3);\r\n}\r\n\r\n/* Width */\r\n.width-100 {\r\n  width: 100%;\r\n}\r\n\r\n.width-50 {\r\n  width: 50%;\r\n}\r\n\r\n.width-33 {\r\n  width: calc(100% / 3);\r\n}\r\n\r\n/* Padding */\r\n.padd-1 {\r\n  padding: 1rem;\r\n}\r\n\r\n/* overflow */\r\n.overflow-hidden {\r\n  overflow: hidden;\r\n}\r\n\r\n/* Position */\r\n.p-absolute {\r\n  position: absolute;\r\n}\r\n\r\n.p-relative {\r\n  position: relative;\r\n}\r\n\r\n.middle {\r\n  top: 50%;\r\n  left: 50%;\r\n  transform: translate(-50%, -50%);\r\n}\r\n\r\n/* Display */\r\n.d-none {\r\n  display: none;\r\n}\r\n\r\n.d-block {\r\n  display: block;\r\n}\r\n\r\n/* Border */\r\n.border-round {\r\n  border-radius: 50%;\r\n}\r\n\r\n/* Font/Text */\r\n.text-center {\r\n  text-align: center;\r\n}\r\n\r\n/* Shadow */\r\n\r\n.shadow {\r\n  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);\r\n}\r\n\r\n/* Opacity */\r\n.opacity-50 {\r\n  opacity: 0.5;\r\n}\r\n\r\n\r\n/* z-index */\r\n.z-index-1 {\r\n  z-index: 1;\r\n}\r\n\r\n/* margin */\r\n.margin-auto {\r\n  margin: auto;\r\n}"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -1096,10 +1126,10 @@ var holdBtn = document.getElementById("btn-hold");
 holdBtn.addEventListener("click", function () {
   return _scripts_components_score__WEBPACK_IMPORTED_MODULE_5__.holdScore(_scripts_components_score__WEBPACK_IMPORTED_MODULE_5__.currentLiveScore);
 });
-redPlayer.scoreLink.textContent = _scripts_entities_players__WEBPACK_IMPORTED_MODULE_3__.redPlayer.score;
-bluePlayer.scoreLink.textContent = _scripts_entities_players__WEBPACK_IMPORTED_MODULE_3__.bluePlayer.score;
+_scripts_entities_players__WEBPACK_IMPORTED_MODULE_3__.redPlayer.scoreLink.textContent = _scripts_entities_players__WEBPACK_IMPORTED_MODULE_3__.redPlayer.score;
+_scripts_entities_players__WEBPACK_IMPORTED_MODULE_3__.bluePlayer.scoreLink.textContent = _scripts_entities_players__WEBPACK_IMPORTED_MODULE_3__.bluePlayer.score;
 })();
 
 /******/ })()
 ;
-//# sourceMappingURL=indexb53f19922c2629ade3c1.js.map
+//# sourceMappingURL=index9026abd116926df4638a.js.map
