@@ -31,13 +31,13 @@ function checkRound(currentPlayer) {
   const playerScore = currentPlayer.score;
   if (playerScore >= 20) {
     currentPlayer.roundsWon += 1;
-    ResetScore(Player.players);
+    ResetScore();
     addRoundsUI(currentPlayer);
   }
 }
 
-function ResetScore(players) {
-  players.map((player) => {
+function ResetScore() {
+  Player.players.map((player) => {
     player.score = 0;
     player.scoreLink.textContent = 0;
   })
@@ -45,8 +45,16 @@ function ResetScore(players) {
 
 function addRoundsUI(currentPlayer) {
   const RoundCircle = document.createElement("div");
-  RoundCircle.classList.add("round-bar", "border-round");
+  RoundCircle.classList.add("round-bar");
   currentPlayer.roundLink.append(RoundCircle);
+
+  checkWinner(currentPlayer);
+}
+
+function checkWinner(currentPlayer) {
+  if (currentPlayer.roundsWon >= 3) {
+    currentPlayer.scoreLink.textContent = "WON!!!";
+  }
 }
 
 export { clearLiveScore, showLive, holdScore, currentLiveScore };

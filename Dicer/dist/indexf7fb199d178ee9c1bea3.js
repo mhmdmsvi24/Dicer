@@ -78,7 +78,33 @@ function holdScore(score) {
   var currentPlayer = _entities_players__WEBPACK_IMPORTED_MODULE_0__.redPlayer.turn !== true ? _entities_players__WEBPACK_IMPORTED_MODULE_0__.redPlayer : _entities_players__WEBPACK_IMPORTED_MODULE_0__.bluePlayer;
   currentPlayer.score += score;
   currentPlayer.scoreLink.textContent = currentPlayer.score;
+  checkRound(currentPlayer);
   clearLiveScore();
+}
+function checkRound(currentPlayer) {
+  var playerScore = currentPlayer.score;
+  if (playerScore >= 20) {
+    currentPlayer.roundsWon += 1;
+    ResetScore();
+    addRoundsUI(currentPlayer);
+  }
+}
+function ResetScore() {
+  _entities_players__WEBPACK_IMPORTED_MODULE_0__.players.map(function (player) {
+    player.score = 0;
+    player.scoreLink.textContent = 0;
+  });
+}
+function addRoundsUI(currentPlayer) {
+  var RoundCircle = document.createElement("div");
+  RoundCircle.classList.add("round-bar");
+  currentPlayer.roundLink.append(RoundCircle);
+  checkWinner(currentPlayer);
+}
+function checkWinner(currentPlayer) {
+  if (currentPlayer.roundsWon >= 3) {
+    currentPlayer.scoreLink.textContent = "WON!!!";
+  }
 }
 
 
@@ -104,7 +130,9 @@ var redPlayer = {
   score: 0,
   scoreLink: document.getElementById("left-score"),
   turn: true,
-  id: document.getElementById("left-player")
+  id: document.getElementById("left-player"),
+  roundsWon: 0,
+  roundLink: document.getElementById("left-round")
 };
 var bluePlayer = {
   name: "blue",
@@ -112,7 +140,9 @@ var bluePlayer = {
   score: 0,
   scoreLink: document.getElementById("right-score"),
   turn: false,
-  id: document.getElementById("right-player")
+  id: document.getElementById("right-player"),
+  roundsWon: 0,
+  roundLink: document.getElementById("right-round")
 };
 var players = [redPlayer, bluePlayer];
 
@@ -163,12 +193,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 /* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/getUrl.js */ "./node_modules/css-loader/dist/runtime/getUrl.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_2__);
 // Imports
 
 
+
+var ___CSS_LOADER_URL_IMPORT_0___ = new URL(/* asset import */ __webpack_require__(/*! ../assets/fonts/Jersey25-Regular.ttf */ "./src/assets/fonts/Jersey25-Regular.ttf"), __webpack_require__.b);
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
+var ___CSS_LOADER_URL_REPLACEMENT_0___ = _node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_2___default()(___CSS_LOADER_URL_IMPORT_0___);
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, `*, *::before, *::after {
+___CSS_LOADER_EXPORT___.push([module.id, `@font-face {
+  font-family: "Jersey";
+  src: url(${___CSS_LOADER_URL_REPLACEMENT_0___});
+}
+*, *::before, *::after {
   box-sizing: border-box;
   text-decoration: none;
   margin: 0;
@@ -176,10 +215,20 @@ ___CSS_LOADER_EXPORT___.push([module.id, `*, *::before, *::after {
   user-select: none;
 }
 
+html, body {
+  width: 100%;
+  height: 100%;
+  font-family: "Jersey";
+  font-size: 1.2em;
+}
+
 body {
   background-color: var(--color-6);
   color: var(--color-3);
-  font-family: cursive;
+}
+
+#body-wrapper {
+  height: 95vh;
 }
 
 #main-container {
@@ -187,6 +236,7 @@ body {
   flex: 1;
   max-width: 500px;
   height: 60%;
+  max-height: 500px;
   margin: 1rem;
 }
 
@@ -248,20 +298,36 @@ body {
   color: var(--color-6);
 }
 
-/* Players Bar */
-#players-container {
-  padding: 1rem;
-  top: 0%;
+/* Players Round bar */
+.rounds {
+  top: 0;
+  text-align: left;
+  display: flex;
+  gap: 0.2rem;
 }
 
-.player-wrapper {
-  width: 220px;
-  height: 50px;
-  background-color: var(--color-4);
-  transform: skew(20deg);
-  border-radius: 1rem;
-  clip-path: polygon(0 0, 80% 0, 100% 100%, 0, 100%);
-}`, "",{"version":3,"sources":["webpack://./src/styles/style.css"],"names":[],"mappings":"AAAA;EACE,sBAAA;EACA,qBAAA;EACA,SAAA;EACA,UAAA;EACA,iBAAA;AACF;;AAEA;EACE,gCAAA;EACA,qBAAA;EACA,oBAAA;AACF;;AAEA;EACE,qCAAA;EACA,OAAA;EACA,gBAAA;EACA,WAAA;EACA,YAAA;AACF;;AAEA;EACE,gCAAA;AACF;;AAEA;EACE,gCAAA;AACF;;AAEA,SAAA;AACA;EACE,gCAAA;EACA,qCAAA;EACA,WAAA;EACA,eAAA;EACA,6BAAA;EACA,oBAAA;AACF;;AAEA;EACE,WAAA;EACA,eAAA;EACA,uBAAA;AACF;;AAEA;EACE,YAAA;EACA,YAAA;AACF;;AAEA;EACE,qBAAA;EACA,gCAAA;EACA,iBAAA;AACF;;AAEA;EACE,gCAAA;AACF;;AAEA;EACE,gCAAA;AACF;;AAEA;EACE,iBAAA;AACF;;AAEA;EACE,qCAAA;EACA,gCAAA;EACA,kBAAA;EACA,iBAAA;EACA,YAAA;EACA,YAAA;EACA,OAAA;EACA,qBAAA;AACF;;AAGA,gBAAA;AACA;EACE,aAAA;EACA,OAAA;AAAF;;AAGA;EACE,YAAA;EACA,YAAA;EACA,gCAAA;EACA,sBAAA;EACA,mBAAA;EAEA,kDAAA;AADF","sourcesContent":["*, *::before, *::after {\r\n  box-sizing: border-box;\r\n  text-decoration: none;\r\n  margin: 0;\r\n  padding: 0;\r\n  user-select: none;\r\n}\r\n\r\nbody {  \r\n  background-color: var(--color-6);\r\n  color: var(--color-3);\r\n  font-family: cursive;\r\n}\r\n\r\n#main-container {\r\n  border-radius: var(--border-radius-8);\r\n  flex: 1;\r\n  max-width: 500px;\r\n  height: 60%;\r\n  margin: 1rem;\r\n}\r\n\r\n#left-player {\r\n  background-color: var(--color-5);\r\n}\r\n\r\n#right-player {\r\n  background-color: var(--color-1);\r\n}\r\n\r\n/* Dice */\r\n#dice {\r\n  background-color: var(--color-3);\r\n  border-radius: var(--border-radius-8);\r\n  width: 85px;\r\n  aspect-ratio: 1;\r\n  border: 2px solid transparent;\r\n  border-style: outset;\r\n}\r\n\r\n.dice-dot {\r\n  width: 12px;\r\n  aspect-ratio: 1;\r\n  background-color: black;\r\n}\r\n\r\n.buttons {\r\n  width: 150px;\r\n  height: 50px;\r\n}\r\n\r\n.btn {\r\n  color: var(--color-6);\r\n  background-color: var(--color-4);\r\n  line-height: 50px;\r\n}\r\n\r\n.hold {\r\n  border-radius: 0.5rem 0 0 0.5rem;\r\n}\r\n\r\n.roll {\r\n  border-radius: 0 0.5rem 0.5rem 0;\r\n}\r\n\r\n.score-font {\r\n  font-size: 1.5rem;\r\n}\r\n\r\n.player-live-score {\r\n  border-radius: var(--border-radius-8);\r\n  background-color: var(--color-4);\r\n  text-align: center;\r\n  line-height: 50px;\r\n  width: 150px;\r\n  height: 50px;\r\n  top: 5%;\r\n  color: var(--color-6);\r\n}\r\n\r\n\r\n/* Players Bar */\r\n#players-container {\r\n  padding: 1rem;\r\n  top: 0%;\r\n}\r\n\r\n.player-wrapper {\r\n  width: 220px; \r\n  height: 50px;\r\n  background-color: var(--color-4);\r\n  transform: skew(20deg);\r\n  border-radius: 1rem;\r\n\r\n  clip-path: polygon(\r\n    0 0,\r\n    80% 0,\r\n    100% 100%,\r\n    0, 100%\r\n  );\r\n}\r\n\r\n.player-img-wrapper {\r\n\r\n}\r\n\r\n.player-bar {\r\n\r\n}"],"sourceRoot":""}]);
+.round-bar {
+  width: 15px;
+  height: 25px;
+  background-color: var(--color-3);
+  border-radius: 0.1rem;
+}
+
+#left-round > * {
+  transform: skewX(-25deg);
+}
+
+#right-round > * {
+  transform: skewX(25deg);
+}
+
+/* guide modal */
+#guide {
+  background-color: red;
+  margin: 1rem;
+  width: 25px;
+  aspect-ratio: 1;
+}`, "",{"version":3,"sources":["webpack://./src/styles/style.css"],"names":[],"mappings":"AAAA;EACE,qBAAA;EACA,4CAAA;AACF;AAEA;EACE,sBAAA;EACA,qBAAA;EACA,SAAA;EACA,UAAA;EACA,iBAAA;AAAF;;AAGA;EACE,WAAA;EACA,YAAA;EACA,qBAAA;EACA,gBAAA;AAAF;;AAGA;EACE,gCAAA;EACA,qBAAA;AAAF;;AAGA;EACE,YAAA;AAAF;;AAGA;EACE,qCAAA;EACA,OAAA;EACA,gBAAA;EACA,WAAA;EACA,iBAAA;EACA,YAAA;AAAF;;AAGA;EACE,gCAAA;AAAF;;AAGA;EACE,gCAAA;AAAF;;AAGA,SAAA;AACA;EACE,gCAAA;EACA,qCAAA;EACA,WAAA;EACA,eAAA;EACA,6BAAA;EACA,oBAAA;AAAF;;AAGA;EACE,WAAA;EACA,eAAA;EACA,uBAAA;AAAF;;AAGA;EACE,YAAA;EACA,YAAA;AAAF;;AAGA;EACE,qBAAA;EACA,gCAAA;EACA,iBAAA;AAAF;;AAGA;EACE,gCAAA;AAAF;;AAGA;EACE,gCAAA;AAAF;;AAGA;EACE,iBAAA;AAAF;;AAGA;EACE,qCAAA;EACA,gCAAA;EACA,kBAAA;EACA,iBAAA;EACA,YAAA;EACA,YAAA;EACA,OAAA;EACA,qBAAA;AAAF;;AAGA,sBAAA;AACA;EACE,MAAA;EACA,gBAAA;EACA,aAAA;EACA,WAAA;AAAF;;AAGA;EACE,WAAA;EACA,YAAA;EACA,gCAAA;EACA,qBAAA;AAAF;;AAGA;EACE,wBAAA;AAAF;;AAIA;EACE,uBAAA;AADF;;AAIA,gBAAA;AACA;EACE,qBAAA;EACA,YAAA;EACA,WAAA;EACA,eAAA;AADF","sourcesContent":["@font-face {\r\n  font-family: \"Jersey\";\r\n  src: url(\"../assets/fonts/Jersey25-Regular.ttf\");\r\n}\r\n\r\n*, *::before, *::after {\r\n  box-sizing: border-box;\r\n  text-decoration: none;\r\n  margin: 0;\r\n  padding: 0;\r\n  user-select: none;\r\n}\r\n\r\nhtml, body {\r\n  width: 100%;\r\n  height: 100%;\r\n  font-family: \"Jersey\";\r\n  font-size: 1.2em;\r\n}\r\n\r\nbody {  \r\n  background-color: var(--color-6);\r\n  color: var(--color-3);\r\n}\r\n\r\n#body-wrapper {\r\n  height: 95vh;\r\n}\r\n\r\n#main-container {\r\n  border-radius: var(--border-radius-8);\r\n  flex: 1;\r\n  max-width: 500px;\r\n  height: 60%;\r\n  max-height: 500px;\r\n  margin: 1rem;\r\n}\r\n\r\n#left-player {\r\n  background-color: var(--color-5);\r\n}\r\n\r\n#right-player {\r\n  background-color: var(--color-1);\r\n}\r\n\r\n/* Dice */\r\n#dice {\r\n  background-color: var(--color-3);\r\n  border-radius: var(--border-radius-8);\r\n  width: 85px;\r\n  aspect-ratio: 1;\r\n  border: 2px solid transparent;\r\n  border-style: outset;\r\n}\r\n\r\n.dice-dot {\r\n  width: 12px;\r\n  aspect-ratio: 1;\r\n  background-color: black;\r\n}\r\n\r\n.buttons {\r\n  width: 150px;\r\n  height: 50px;\r\n}\r\n\r\n.btn {\r\n  color: var(--color-6);\r\n  background-color: var(--color-4);\r\n  line-height: 50px;\r\n}\r\n\r\n.hold {\r\n  border-radius: 0.5rem 0 0 0.5rem;\r\n}\r\n\r\n.roll {\r\n  border-radius: 0 0.5rem 0.5rem 0;\r\n}\r\n\r\n.score-font {\r\n  font-size: 1.5rem;\r\n}\r\n\r\n.player-live-score {\r\n  border-radius: var(--border-radius-8);\r\n  background-color: var(--color-4);\r\n  text-align: center;\r\n  line-height: 50px;\r\n  width: 150px;\r\n  height: 50px;\r\n  top: 5%;\r\n  color: var(--color-6);\r\n}\r\n\r\n/* Players Round bar */\r\n.rounds {\r\n  top: 0;\r\n  text-align: left;\r\n  display: flex;\r\n  gap: 0.2rem;\r\n}\r\n\r\n.round-bar {\r\n  width: 15px;\r\n  height: 25px;\r\n  background-color: var(--color-3);\r\n  border-radius: 0.1rem;\r\n}\r\n\r\n#left-round > * {\r\n  transform: skewX(-25deg);\r\n  \r\n}\r\n\r\n#right-round > * {\r\n  transform: skewX(25deg);\r\n}\r\n\r\n/* guide modal */\r\n#guide {\r\n  background-color: red;\r\n  margin: 1rem;\r\n  width: 25px;\r\n  aspect-ratio: 1;\r\n}\r\n\r\n.guide-icon {\r\n\r\n}"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -333,10 +399,6 @@ ___CSS_LOADER_EXPORT___.push([module.id, `/* Flex-box */
 }
 
 /* Height */
-.height-100vh {
-  height: 100vh;
-}
-
 .height-100 {
   height: 100%;
 }
@@ -424,7 +486,7 @@ ___CSS_LOADER_EXPORT___.push([module.id, `/* Flex-box */
 /* margin */
 .margin-auto {
   margin: auto;
-}`, "",{"version":3,"sources":["webpack://./src/styles/utils.css"],"names":[],"mappings":"AAAA,aAAA;AACA;EACE,aAAA;AACF;;AAEA;EACE,sBAAA;AACF;;AAEA;EACE,uBAAA;AACF;;AAEA;EACE,6BAAA;AACF;;AAEA;EACE,8BAAA;AACF;;AAEA;EACE,2BAAA;AACF;;AAEA;EACE,yBAAA;AACF;;AAEA;EACE,mBAAA;AACF;;AAEA;EACE,uBAAA;AACF;;AAEA;EACE,qBAAA;AACF;;AAEA;EACE,WAAA;AACF;;AAEA,WAAA;AACA;EACE,aAAA;AACF;;AAEA;EACE,YAAA;AACF;;AAEA;EACE,WAAA;AACF;;AAEA;EACE,sBAAA;AACF;;AAEA,UAAA;AACA;EACE,WAAA;AACF;;AAEA;EACE,UAAA;AACF;;AAEA;EACE,qBAAA;AACF;;AAEA,YAAA;AACA;EACE,aAAA;AACF;;AAEA,aAAA;AACA;EACE,gBAAA;AACF;;AAEA,aAAA;AACA;EACE,kBAAA;AACF;;AAEA;EACE,kBAAA;AACF;;AAEA;EACE,QAAA;EACA,SAAA;EACA,gCAAA;AACF;;AAEA,YAAA;AACA;EACE,aAAA;AACF;;AAEA;EACE,cAAA;AACF;;AAEA,WAAA;AACA;EACE,kBAAA;AACF;;AAEA,cAAA;AACA;EACE,kBAAA;AACF;;AAEA,WAAA;AAEA;EACE,0CAAA;AAAF;;AAGA,YAAA;AACA;EACE,YAAA;AAAF;;AAIA,YAAA;AACA;EACE,UAAA;AADF;;AAIA,WAAA;AACA;EACE,YAAA;AADF","sourcesContent":["/* Flex-box */\r\n.d-flex {\r\n  display: flex;\r\n}\r\n\r\n.flex-col {\r\n  flex-direction: column;\r\n}\r\n\r\n.justify-center {\r\n  justify-content: center;\r\n}\r\n\r\n.justify-around {\r\n  justify-content: space-around;\r\n}\r\n\r\n.justify-between {\r\n  justify-content: space-between;\r\n}\r\n\r\n.justify-start {\r\n  justify-content: flex-start;\r\n}\r\n\r\n.justify-end {\r\n  justify-content: flex-end;\r\n}\r\n\r\n.align-center {\r\n  align-items: center;\r\n}\r\n\r\n.align-start {\r\n  align-items: flex-start;\r\n}\r\n\r\n.align-end {\r\n  align-items: flex-end;\r\n}\r\n\r\n.gap-0 {\r\n  gap: 0.1rem\r\n}\r\n\r\n/* Height */\r\n.height-100vh {\r\n  height: 100vh;\r\n}\r\n\r\n.height-100 {\r\n  height: 100%;\r\n}\r\n\r\n.height-50 {\r\n  height: 50%;\r\n}\r\n\r\n.height-33 {\r\n  height: calc(100% / 3);\r\n}\r\n\r\n/* Width */\r\n.width-100 {\r\n  width: 100%;\r\n}\r\n\r\n.width-50 {\r\n  width: 50%;\r\n}\r\n\r\n.width-33 {\r\n  width: calc(100% / 3);\r\n}\r\n\r\n/* Padding */\r\n.padd-1 {\r\n  padding: 1rem;\r\n}\r\n\r\n/* overflow */\r\n.overflow-hidden {\r\n  overflow: hidden;\r\n}\r\n\r\n/* Position */\r\n.p-absolute {\r\n  position: absolute;\r\n}\r\n\r\n.p-relative {\r\n  position: relative;\r\n}\r\n\r\n.middle {\r\n  top: 50%;\r\n  left: 50%;\r\n  transform: translate(-50%, -50%);\r\n}\r\n\r\n/* Display */\r\n.d-none {\r\n  display: none;\r\n}\r\n\r\n.d-block {\r\n  display: block;\r\n}\r\n\r\n/* Border */\r\n.border-round {\r\n  border-radius: 50%;\r\n}\r\n\r\n/* Font/Text */\r\n.text-center {\r\n  text-align: center;\r\n}\r\n\r\n/* Shadow */\r\n\r\n.shadow {\r\n  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);\r\n}\r\n\r\n/* Opacity */\r\n.opacity-50 {\r\n  opacity: 0.5;\r\n}\r\n\r\n\r\n/* z-index */\r\n.z-index-1 {\r\n  z-index: 1;\r\n}\r\n\r\n/* margin */\r\n.margin-auto {\r\n  margin: auto;\r\n}"],"sourceRoot":""}]);
+}`, "",{"version":3,"sources":["webpack://./src/styles/utils.css"],"names":[],"mappings":"AAAA,aAAA;AACA;EACE,aAAA;AACF;;AAEA;EACE,sBAAA;AACF;;AAEA;EACE,uBAAA;AACF;;AAEA;EACE,6BAAA;AACF;;AAEA;EACE,8BAAA;AACF;;AAEA;EACE,2BAAA;AACF;;AAEA;EACE,yBAAA;AACF;;AAEA;EACE,mBAAA;AACF;;AAEA;EACE,uBAAA;AACF;;AAEA;EACE,qBAAA;AACF;;AAEA;EACE,WAAA;AACF;;AAEA,WAAA;AACA;EACE,YAAA;AACF;;AAEA;EACE,WAAA;AACF;;AAEA;EACE,sBAAA;AACF;;AAEA,UAAA;AACA;EACE,WAAA;AACF;;AAEA;EACE,UAAA;AACF;;AAEA;EACE,qBAAA;AACF;;AAEA,YAAA;AACA;EACE,aAAA;AACF;;AAEA,aAAA;AACA;EACE,gBAAA;AACF;;AAEA,aAAA;AACA;EACE,kBAAA;AACF;;AAEA;EACE,kBAAA;AACF;;AAEA;EACE,QAAA;EACA,SAAA;EACA,gCAAA;AACF;;AAEA,YAAA;AACA;EACE,aAAA;AACF;;AAEA;EACE,cAAA;AACF;;AAEA,WAAA;AACA;EACE,kBAAA;AACF;;AAEA,cAAA;AACA;EACE,kBAAA;AACF;;AAEA,WAAA;AAEA;EACE,0CAAA;AAAF;;AAGA,YAAA;AACA;EACE,YAAA;AAAF;;AAIA,YAAA;AACA;EACE,UAAA;AADF;;AAIA,WAAA;AACA;EACE,YAAA;AADF","sourcesContent":["/* Flex-box */\r\n.d-flex {\r\n  display: flex;\r\n}\r\n\r\n.flex-col {\r\n  flex-direction: column;\r\n}\r\n\r\n.justify-center {\r\n  justify-content: center;\r\n}\r\n\r\n.justify-around {\r\n  justify-content: space-around;\r\n}\r\n\r\n.justify-between {\r\n  justify-content: space-between;\r\n}\r\n\r\n.justify-start {\r\n  justify-content: flex-start;\r\n}\r\n\r\n.justify-end {\r\n  justify-content: flex-end;\r\n}\r\n\r\n.align-center {\r\n  align-items: center;\r\n}\r\n\r\n.align-start {\r\n  align-items: flex-start;\r\n}\r\n\r\n.align-end {\r\n  align-items: flex-end;\r\n}\r\n\r\n.gap-0 {\r\n  gap: 0.1rem\r\n}\r\n\r\n/* Height */\r\n.height-100 {\r\n  height: 100%;\r\n}\r\n\r\n.height-50 {\r\n  height: 50%;\r\n}\r\n\r\n.height-33 {\r\n  height: calc(100% / 3);\r\n}\r\n\r\n/* Width */\r\n.width-100 {\r\n  width: 100%;\r\n}\r\n\r\n.width-50 {\r\n  width: 50%;\r\n}\r\n\r\n.width-33 {\r\n  width: calc(100% / 3);\r\n}\r\n\r\n/* Padding */\r\n.padd-1 {\r\n  padding: 1rem;\r\n}\r\n\r\n/* overflow */\r\n.overflow-hidden {\r\n  overflow: hidden;\r\n}\r\n\r\n/* Position */\r\n.p-absolute {\r\n  position: absolute;\r\n}\r\n\r\n.p-relative {\r\n  position: relative;\r\n}\r\n\r\n.middle {\r\n  top: 50%;\r\n  left: 50%;\r\n  transform: translate(-50%, -50%);\r\n}\r\n\r\n/* Display */\r\n.d-none {\r\n  display: none;\r\n}\r\n\r\n.d-block {\r\n  display: block;\r\n}\r\n\r\n/* Border */\r\n.border-round {\r\n  border-radius: 50%;\r\n}\r\n\r\n/* Font/Text */\r\n.text-center {\r\n  text-align: center;\r\n}\r\n\r\n/* Shadow */\r\n\r\n.shadow {\r\n  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);\r\n}\r\n\r\n/* Opacity */\r\n.opacity-50 {\r\n  opacity: 0.5;\r\n}\r\n\r\n\r\n/* z-index */\r\n.z-index-1 {\r\n  z-index: 1;\r\n}\r\n\r\n/* margin */\r\n.margin-auto {\r\n  margin: auto;\r\n}"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -460,9 +522,9 @@ ___CSS_LOADER_EXPORT___.push([module.id, `:root {
   --color-6: #001524;
   --color-7: #70d6ff;
   /* Border Radius */
-  --border-radius-16: 16px;
   --border-radius-8: 8px;
-}`, "",{"version":3,"sources":["webpack://./src/styles/var.css"],"names":[],"mappings":"AAAA;EACE,kBAAA;EACA,kBAAA;EACA,kBAAA;EACA,kBAAA;EACA,kBAAA;EACA,kBAAA;EACA,kBAAA;EACA,kBAAA;EAEA,kBAAA;EACA,wBAAA;EACA,sBAAA;AAAF","sourcesContent":[":root {\r\n  /* Color Palette */\r\n  --color-1: #0081a7;\r\n  --color-2: #00afb9;\r\n  --color-3: #fdfcdc;\r\n  --color-4: #fed9b7;\r\n  --color-5: #f07167;\r\n  --color-6: #001524;\r\n  --color-7: #70d6ff;\r\n\r\n  /* Border Radius */\r\n  --border-radius-16: 16px;\r\n  --border-radius-8: 8px;\r\n}"],"sourceRoot":""}]);
+  --border-radius-16: 16px;
+}`, "",{"version":3,"sources":["webpack://./src/styles/var.css"],"names":[],"mappings":"AAAA;EACE,kBAAA;EACA,kBAAA;EACA,kBAAA;EACA,kBAAA;EACA,kBAAA;EACA,kBAAA;EACA,kBAAA;EACA,kBAAA;EAEA,kBAAA;EACA,sBAAA;EACA,wBAAA;AAAF","sourcesContent":[":root {\r\n  /* Color Palette */\r\n  --color-1: #0081a7;\r\n  --color-2: #00afb9;\r\n  --color-3: #fdfcdc;\r\n  --color-4: #fed9b7;\r\n  --color-5: #f07167;\r\n  --color-6: #001524;\r\n  --color-7: #70d6ff;\r\n\r\n  /* Border Radius */\r\n  --border-radius-8: 8px;\r\n  --border-radius-16: 16px;\r\n}"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -559,6 +621,41 @@ module.exports = function (cssWithMappingToString) {
     }
   };
   return list;
+};
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/runtime/getUrl.js":
+/*!********************************************************!*\
+  !*** ./node_modules/css-loader/dist/runtime/getUrl.js ***!
+  \********************************************************/
+/***/ ((module) => {
+
+
+
+module.exports = function (url, options) {
+  if (!options) {
+    options = {};
+  }
+  if (!url) {
+    return url;
+  }
+  url = String(url.__esModule ? url.default : url);
+
+  // If url is already wrapped in quotes, remove them
+  if (/^['"].*['"]$/.test(url)) {
+    url = url.slice(1, -1);
+  }
+  if (options.hash) {
+    url += options.hash;
+  }
+
+  // Should url be wrapped?
+  // See https://drafts.csswg.org/css-values-3/#urls
+  if (/["'() \t\n]|(%20)/.test(url) || options.needQuotes) {
+    return "\"".concat(url.replace(/"/g, '\\"').replace(/\n/g, "\\n"), "\"");
+  }
+  return url;
 };
 
 /***/ }),
@@ -1009,6 +1106,16 @@ function styleTagTransform(css, styleElement) {
 }
 module.exports = styleTagTransform;
 
+/***/ }),
+
+/***/ "./src/assets/fonts/Jersey25-Regular.ttf":
+/*!***********************************************!*\
+  !*** ./src/assets/fonts/Jersey25-Regular.ttf ***!
+  \***********************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+module.exports = __webpack_require__.p + "Jersey25-Regular.ttf";
+
 /***/ })
 
 /******/ 	});
@@ -1037,6 +1144,9 @@ module.exports = styleTagTransform;
 /******/ 		return module.exports;
 /******/ 	}
 /******/ 	
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = __webpack_modules__;
+/******/ 	
 /************************************************************************/
 /******/ 	/* webpack/runtime/compat get default export */
 /******/ 	(() => {
@@ -1062,6 +1172,18 @@ module.exports = styleTagTransform;
 /******/ 		};
 /******/ 	})();
 /******/ 	
+/******/ 	/* webpack/runtime/global */
+/******/ 	(() => {
+/******/ 		__webpack_require__.g = (function() {
+/******/ 			if (typeof globalThis === 'object') return globalThis;
+/******/ 			try {
+/******/ 				return this || new Function('return this')();
+/******/ 			} catch (e) {
+/******/ 				if (typeof window === 'object') return window;
+/******/ 			}
+/******/ 		})();
+/******/ 	})();
+/******/ 	
 /******/ 	/* webpack/runtime/hasOwnProperty shorthand */
 /******/ 	(() => {
 /******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
@@ -1076,6 +1198,55 @@ module.exports = styleTagTransform;
 /******/ 			}
 /******/ 			Object.defineProperty(exports, '__esModule', { value: true });
 /******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/publicPath */
+/******/ 	(() => {
+/******/ 		var scriptUrl;
+/******/ 		if (__webpack_require__.g.importScripts) scriptUrl = __webpack_require__.g.location + "";
+/******/ 		var document = __webpack_require__.g.document;
+/******/ 		if (!scriptUrl && document) {
+/******/ 			if (document.currentScript)
+/******/ 				scriptUrl = document.currentScript.src;
+/******/ 			if (!scriptUrl) {
+/******/ 				var scripts = document.getElementsByTagName("script");
+/******/ 				if(scripts.length) {
+/******/ 					var i = scripts.length - 1;
+/******/ 					while (i > -1 && (!scriptUrl || !/^http(s?):/.test(scriptUrl))) scriptUrl = scripts[i--].src;
+/******/ 				}
+/******/ 			}
+/******/ 		}
+/******/ 		// When supporting browsers where an automatic publicPath is not supported you must specify an output.publicPath manually via configuration
+/******/ 		// or pass an empty string ("") and set the __webpack_public_path__ variable from your code to use your own logic.
+/******/ 		if (!scriptUrl) throw new Error("Automatic publicPath is not supported in this browser");
+/******/ 		scriptUrl = scriptUrl.replace(/#.*$/, "").replace(/\?.*$/, "").replace(/\/[^\/]+$/, "/");
+/******/ 		__webpack_require__.p = scriptUrl;
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/jsonp chunk loading */
+/******/ 	(() => {
+/******/ 		__webpack_require__.b = document.baseURI || self.location.href;
+/******/ 		
+/******/ 		// object to store loaded and loading chunks
+/******/ 		// undefined = chunk not loaded, null = chunk preloaded/prefetched
+/******/ 		// [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
+/******/ 		var installedChunks = {
+/******/ 			"index": 0
+/******/ 		};
+/******/ 		
+/******/ 		// no chunk on demand loading
+/******/ 		
+/******/ 		// no prefetching
+/******/ 		
+/******/ 		// no preloaded
+/******/ 		
+/******/ 		// no HMR
+/******/ 		
+/******/ 		// no HMR manifest
+/******/ 		
+/******/ 		// no on chunks loaded
+/******/ 		
+/******/ 		// no jsonp function
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/nonce */
@@ -1102,16 +1273,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-// import choaticNight from "./assets/images/choatic-night-moon.jpg";
 
 
-
-
-
-// Assest
-// const bodyWrapper = document.getElementById("body-wrapper");
-// bodyWrapper.style.backgroundImage = `url(${choaticNight})`;
-// bodyWrapper.classList.add("bg-img");
 
 _scripts_entities_players__WEBPACK_IMPORTED_MODULE_3__.switchPlayers(_scripts_entities_players__WEBPACK_IMPORTED_MODULE_3__.players);
 
@@ -1132,4 +1295,4 @@ _scripts_entities_players__WEBPACK_IMPORTED_MODULE_3__.bluePlayer.scoreLink.text
 
 /******/ })()
 ;
-//# sourceMappingURL=index9026abd116926df4638a.js.map
+//# sourceMappingURL=indexf7fb199d178ee9c1bea3.js.map

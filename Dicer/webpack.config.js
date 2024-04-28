@@ -1,5 +1,6 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const loader = require("sass-loader");
 const BundleAnalyzerPlugin =
   require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
 
@@ -20,7 +21,6 @@ module.exports = {
       directory: path.resolve(__dirname, "dist"),
     },
     port: 3000,
-    open: true,
     hot: true,
     compress: true,
     historyApiFallback: true,
@@ -44,6 +44,11 @@ module.exports = {
       {
         test: /\.(png|svg|jpg|jpeg|gif)$/i,
         type: "asset/resource",
+        use : [
+          {
+            loader: "file-loader"
+          }
+        ]
       },
     ],
   },
