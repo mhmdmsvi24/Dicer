@@ -2,6 +2,7 @@ import "./styles/style.css";
 import "./styles/utils.css";
 import "./styles/var.css";
 
+import {showModal, hideModal} from "./scripts/components/info";
 import * as Player from "./scripts/entities/players";
 import { randNum } from "./scripts/utilities/utils";
 import * as Score from "./scripts/components/score";
@@ -21,3 +22,9 @@ holdBtn.addEventListener("click", () =>
 
 Player.redPlayer.scoreLink.textContent = Player.redPlayer.score;
 Player.bluePlayer.scoreLink.textContent = Player.bluePlayer.score;
+
+const infoIcon = document.querySelector(".info-icon");
+const closeBtn = document.querySelector(".close-modal");
+
+infoIcon.addEventListener("click", showModal);
+closeBtn.addEventListener("click", hideModal);

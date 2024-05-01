@@ -9,12 +9,25 @@
 
 <body>
   <div id="body-wrapper">
-    <div id="guide" class="p-absolute">
-      <div class="guide-icon">
-        
+    <div id="info" class="p-absolute">
+      <div class="info-icon border-round animation-blink">
+        &excl;
       </div>
-      <div class="guide-modal">
-
+      <div class="info-modal d-none">
+        <div class="d-flex justify-between align-start">
+          <h5>How To Play: </h5>
+          <button class="close-modal">&times;</button>
+        </div>
+        <p>
+        <ol>
+          <li>Dice (Roll) 🎲</li>
+          <li>You can Dice until you get 1</li>
+          <li>If you get 1 you'll lose the score and<br /> players turn switches</li>
+          <li>You can save your score by Holding it (Hold) and switching to next player</li>
+          <li>Any player who score 100 will win the round</li>
+          <li>Any player win 3 rounds will win the game</li>
+        </ol>
+        </p>
       </div>
     </div>
     <div id="main-container" class="d-flex justify-center align-center overflow-hidden p-relative middle shadow">

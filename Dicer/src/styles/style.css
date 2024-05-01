@@ -118,14 +118,83 @@ body {
   transform: skewX(25deg);
 }
 
-/* guide modal */
-#guide {
-  background-color: red;
-  margin: 1rem;
-  width: 25px;
+/* info modal */
+#info {
+  width: 30px;
   aspect-ratio: 1;
+  margin-left: 1rem;
+  color: var(--color-3);
+  cursor: pointer;
 }
 
-.guide-icon {
+.info-icon {
+  border: 2px solid var(--color-3);
+  text-align: center;
+  line-height: 30px;
+}
 
+.animation-blink {
+  animation: blink 0.8s infinite;
+}
+
+@keyframes blink {
+  0% {
+    outline: 1px solid var(--color-5);
+  }
+
+  25% {
+    outline: 5px solid #f07067e0;
+  }
+
+  50% {
+    outline: 7px solid #f070678c;
+  }
+
+  75% {
+    outline: 9px solid #f0706750;
+  }
+
+  100% {
+    outline: 0px solid #f0706750;
+  }
+}
+
+.info-modal {
+  width: 350px;
+  background-color: red;
+  font-size: 0.9em;
+  padding: 1rem;
+  border-radius: var(--border-radius-8);
+  position: absolute;
+  top: 0%;
+  left: 150%;
+  z-index: 2;
+  cursor: default;
+}
+
+.info-modal p {
+  font-size: 0.9em;
+}
+
+.info-modal ol {
+  list-style-position: inside;
+}
+
+.info-modal::before {
+  content: "";
+  position: absolute;
+  background-color: red;
+  width: 20px;
+  height: 25px;
+  top: 2%;
+  left: -10px;
+  clip-path: polygon(0 50%, 100% 0, 100% 100%);
+}
+
+.close-modal {
+  font-size: 1em;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  color: white;
 }

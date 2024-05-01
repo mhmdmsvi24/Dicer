@@ -29,7 +29,7 @@ function holdScore(score) {
 
 function checkRound(currentPlayer) {
   const playerScore = currentPlayer.score;
-  if (playerScore >= 20) {
+  if (playerScore >= 100) {
     currentPlayer.roundsWon += 1;
     ResetScore();
     addRoundsUI(currentPlayer);
