@@ -14,10 +14,13 @@ The first player to reach 100 points after three rounds wins the game!
 
 Overview:
 ![alt text](./readme/image-4.png)
+
 Rounds won for each player:
 ![alt text](./readme/image-1.png)
+
 Final Winner:
 ![alt text](./readme/image.png)
+
 A simple guide for HowToPlay:
 ![alt text](./readme/image-2.png)
 ![alt text](./readme/image-3.png)
@@ -26,7 +29,7 @@ A simple guide for HowToPlay:
 I leaned alot building this project, using a lot of tools and also building my own style librariy for
 performance and effeciency.
 
-### Tech Stack and Learning Curve:
+## Tech Stack and Learning Curve:
 Building Dicer was a rewarding learning experience, and I leveraged several essential tools:
 1. Git/GitHub: Version control for collaboration and project management.
 2. npm: Dependency management to install and manage project libraries.
@@ -36,5 +39,4 @@ Building Dicer was a rewarding learning experience, and I leveraged several esse
 
 ## Next Steps:
 This project is currently under development to add two-player functionality.
-I'm constantly learning and improving my skills. Feel free to reach out to discuss Dicer or my 
-development journey!
+I'm constantly learning and improving my skills. Feel free to reach out to discuss (Linkedin) Dicer or my development journey!
