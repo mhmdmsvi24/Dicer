@@ -13,15 +13,19 @@ However, beware! Rolling a 1 will reset your turn score to 0.
 The first player to reach 100 points after three rounds wins the game!
 
 - Overview:
+
 ![alt text](./readme/image-4.png)
 
 - Rounds won for each player:
+
 ![alt text](./readme/image-1.png)
 
 - Final Winner:
+
 ![alt text](./readme/image.png)
 
 - A simple guide for HowToPlay:
+
 ![alt text](./readme/image-2.png)
 ![alt text](./readme/image-3.png)
 
