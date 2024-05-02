@@ -12,22 +12,22 @@ the experience.
 However, beware! Rolling a 1 will reset your turn score to 0.
 The first player to reach 100 points after three rounds wins the game!
 
-Overview:
+- Overview:
 ![alt text](./readme/image-4.png)
 
-Rounds won for each player:
+- Rounds won for each player:
 ![alt text](./readme/image-1.png)
 
-Final Winner:
+- Final Winner:
 ![alt text](./readme/image.png)
 
-A simple guide for HowToPlay:
+- A simple guide for HowToPlay:
 ![alt text](./readme/image-2.png)
 ![alt text](./readme/image-3.png)
 
 ## Tools and Technologies:
-I leaned alot building this project, using a lot of tools and also building my own style librariy for
-performance and effeciency.
+I learned alot building this project, using a lot of tools and also building my own style library for
+performance and efficiency.
 
 ## Tech Stack and Learning Curve:
 Building Dicer was a rewarding learning experience, and I leveraged several essential tools:
