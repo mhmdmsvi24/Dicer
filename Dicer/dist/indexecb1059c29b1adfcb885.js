@@ -43,6 +43,30 @@ function clearDice() {
 
 /***/ }),
 
+/***/ "./src/scripts/components/info.js":
+/*!****************************************!*\
+  !*** ./src/scripts/components/info.js ***!
+  \****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   hideModal: () => (/* binding */ hideModal),
+/* harmony export */   showModal: () => (/* binding */ showModal)
+/* harmony export */ });
+var infoIcon = document.querySelector(".info-icon");
+var modal = document.querySelector(".info-modal");
+function showModal() {
+  infoIcon.classList.remove("animation-blink");
+  modal.classList.toggle("d-none");
+}
+function hideModal() {
+  modal.classList.add("d-none");
+}
+
+
+/***/ }),
+
 /***/ "./src/scripts/components/score.js":
 /*!*****************************************!*\
   !*** ./src/scripts/components/score.js ***!
@@ -83,7 +107,7 @@ function holdScore(score) {
 }
 function checkRound(currentPlayer) {
   var playerScore = currentPlayer.score;
-  if (playerScore >= 20) {
+  if (playerScore >= 100) {
     currentPlayer.roundsWon += 1;
     ResetScore();
     addRoundsUI(currentPlayer);
@@ -218,26 +242,28 @@ ___CSS_LOADER_EXPORT___.push([module.id, `@font-face {
 html, body {
   width: 100%;
   height: 100%;
-  font-family: "Jersey";
+  font-family: "Jersey", sans-serif, serif;
   font-size: 1.2em;
 }
 
 body {
   background-color: var(--color-6);
   color: var(--color-3);
+  overflow: none;
 }
 
 #body-wrapper {
   height: 95vh;
+  margin: 0;
+  padding: 1rem;
 }
 
 #main-container {
   border-radius: var(--border-radius-8);
   flex: 1;
   max-width: 500px;
-  height: 60%;
+  height: 65%;
   max-height: 500px;
-  margin: 1rem;
 }
 
 #left-player {
@@ -321,13 +347,81 @@ body {
   transform: skewX(25deg);
 }
 
-/* guide modal */
-#guide {
-  background-color: red;
-  margin: 1rem;
-  width: 25px;
+/* info modal */
+#info {
+  width: 30px;
   aspect-ratio: 1;
-}`, "",{"version":3,"sources":["webpack://./src/styles/style.css"],"names":[],"mappings":"AAAA;EACE,qBAAA;EACA,4CAAA;AACF;AAEA;EACE,sBAAA;EACA,qBAAA;EACA,SAAA;EACA,UAAA;EACA,iBAAA;AAAF;;AAGA;EACE,WAAA;EACA,YAAA;EACA,qBAAA;EACA,gBAAA;AAAF;;AAGA;EACE,gCAAA;EACA,qBAAA;AAAF;;AAGA;EACE,YAAA;AAAF;;AAGA;EACE,qCAAA;EACA,OAAA;EACA,gBAAA;EACA,WAAA;EACA,iBAAA;EACA,YAAA;AAAF;;AAGA;EACE,gCAAA;AAAF;;AAGA;EACE,gCAAA;AAAF;;AAGA,SAAA;AACA;EACE,gCAAA;EACA,qCAAA;EACA,WAAA;EACA,eAAA;EACA,6BAAA;EACA,oBAAA;AAAF;;AAGA;EACE,WAAA;EACA,eAAA;EACA,uBAAA;AAAF;;AAGA;EACE,YAAA;EACA,YAAA;AAAF;;AAGA;EACE,qBAAA;EACA,gCAAA;EACA,iBAAA;AAAF;;AAGA;EACE,gCAAA;AAAF;;AAGA;EACE,gCAAA;AAAF;;AAGA;EACE,iBAAA;AAAF;;AAGA;EACE,qCAAA;EACA,gCAAA;EACA,kBAAA;EACA,iBAAA;EACA,YAAA;EACA,YAAA;EACA,OAAA;EACA,qBAAA;AAAF;;AAGA,sBAAA;AACA;EACE,MAAA;EACA,gBAAA;EACA,aAAA;EACA,WAAA;AAAF;;AAGA;EACE,WAAA;EACA,YAAA;EACA,gCAAA;EACA,qBAAA;AAAF;;AAGA;EACE,wBAAA;AAAF;;AAIA;EACE,uBAAA;AADF;;AAIA,gBAAA;AACA;EACE,qBAAA;EACA,YAAA;EACA,WAAA;EACA,eAAA;AADF","sourcesContent":["@font-face {\r\n  font-family: \"Jersey\";\r\n  src: url(\"../assets/fonts/Jersey25-Regular.ttf\");\r\n}\r\n\r\n*, *::before, *::after {\r\n  box-sizing: border-box;\r\n  text-decoration: none;\r\n  margin: 0;\r\n  padding: 0;\r\n  user-select: none;\r\n}\r\n\r\nhtml, body {\r\n  width: 100%;\r\n  height: 100%;\r\n  font-family: \"Jersey\";\r\n  font-size: 1.2em;\r\n}\r\n\r\nbody {  \r\n  background-color: var(--color-6);\r\n  color: var(--color-3);\r\n}\r\n\r\n#body-wrapper {\r\n  height: 95vh;\r\n}\r\n\r\n#main-container {\r\n  border-radius: var(--border-radius-8);\r\n  flex: 1;\r\n  max-width: 500px;\r\n  height: 60%;\r\n  max-height: 500px;\r\n  margin: 1rem;\r\n}\r\n\r\n#left-player {\r\n  background-color: var(--color-5);\r\n}\r\n\r\n#right-player {\r\n  background-color: var(--color-1);\r\n}\r\n\r\n/* Dice */\r\n#dice {\r\n  background-color: var(--color-3);\r\n  border-radius: var(--border-radius-8);\r\n  width: 85px;\r\n  aspect-ratio: 1;\r\n  border: 2px solid transparent;\r\n  border-style: outset;\r\n}\r\n\r\n.dice-dot {\r\n  width: 12px;\r\n  aspect-ratio: 1;\r\n  background-color: black;\r\n}\r\n\r\n.buttons {\r\n  width: 150px;\r\n  height: 50px;\r\n}\r\n\r\n.btn {\r\n  color: var(--color-6);\r\n  background-color: var(--color-4);\r\n  line-height: 50px;\r\n}\r\n\r\n.hold {\r\n  border-radius: 0.5rem 0 0 0.5rem;\r\n}\r\n\r\n.roll {\r\n  border-radius: 0 0.5rem 0.5rem 0;\r\n}\r\n\r\n.score-font {\r\n  font-size: 1.5rem;\r\n}\r\n\r\n.player-live-score {\r\n  border-radius: var(--border-radius-8);\r\n  background-color: var(--color-4);\r\n  text-align: center;\r\n  line-height: 50px;\r\n  width: 150px;\r\n  height: 50px;\r\n  top: 5%;\r\n  color: var(--color-6);\r\n}\r\n\r\n/* Players Round bar */\r\n.rounds {\r\n  top: 0;\r\n  text-align: left;\r\n  display: flex;\r\n  gap: 0.2rem;\r\n}\r\n\r\n.round-bar {\r\n  width: 15px;\r\n  height: 25px;\r\n  background-color: var(--color-3);\r\n  border-radius: 0.1rem;\r\n}\r\n\r\n#left-round > * {\r\n  transform: skewX(-25deg);\r\n  \r\n}\r\n\r\n#right-round > * {\r\n  transform: skewX(25deg);\r\n}\r\n\r\n/* guide modal */\r\n#guide {\r\n  background-color: red;\r\n  margin: 1rem;\r\n  width: 25px;\r\n  aspect-ratio: 1;\r\n}\r\n\r\n.guide-icon {\r\n\r\n}"],"sourceRoot":""}]);
+  margin-left: 1rem;
+  color: var(--color-3);
+  cursor: pointer;
+}
+
+.info-icon {
+  border: 2px solid var(--color-3);
+  text-align: center;
+  line-height: 30px;
+}
+
+.animation-blink {
+  animation: blink 0.8s infinite;
+}
+
+@keyframes blink {
+  0% {
+    outline: 1px solid var(--color-5);
+  }
+  25% {
+    outline: 5px solid rgba(240, 112, 103, 0.8784313725);
+  }
+  50% {
+    outline: 7px solid rgba(240, 112, 103, 0.5490196078);
+  }
+  75% {
+    outline: 9px solid rgba(240, 112, 103, 0.3137254902);
+  }
+  100% {
+    outline: 0px solid rgba(240, 112, 103, 0.3137254902);
+  }
+}
+.info-modal {
+  width: 350px;
+  background-color: var(--color-1);
+  font-size: 0.9em;
+  padding: 1rem;
+  border-radius: var(--border-radius-8);
+  position: absolute;
+  top: 0%;
+  left: 150%;
+  z-index: 2;
+  cursor: default;
+}
+
+.info-modal p {
+  font-size: 0.9em;
+}
+
+.info-modal ol {
+  list-style-position: inside;
+}
+
+.info-modal::before {
+  content: "";
+  position: absolute;
+  background-color: var(--color-1);
+  width: 20px;
+  height: 25px;
+  top: 2%;
+  left: -10px;
+  clip-path: polygon(0 50%, 100% 0, 100% 100%);
+}
+
+.close-modal {
+  font-size: 1em;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  color: white;
+}`, "",{"version":3,"sources":["webpack://./src/styles/style.css"],"names":[],"mappings":"AAAA;EACE,qBAAA;EACA,4CAAA;AACF;AAEA;EACE,sBAAA;EACA,qBAAA;EACA,SAAA;EACA,UAAA;EACA,iBAAA;AAAF;;AAGA;EACE,WAAA;EACA,YAAA;EACA,wCAAA;EACA,gBAAA;AAAF;;AAGA;EACE,gCAAA;EACA,qBAAA;EACA,cAAA;AAAF;;AAGA;EACE,YAAA;EACA,SAAA;EACA,aAAA;AAAF;;AAGA;EACE,qCAAA;EACA,OAAA;EACA,gBAAA;EACA,WAAA;EACA,iBAAA;AAAF;;AAGA;EACE,gCAAA;AAAF;;AAGA;EACE,gCAAA;AAAF;;AAGA,SAAA;AACA;EACE,gCAAA;EACA,qCAAA;EACA,WAAA;EACA,eAAA;EACA,6BAAA;EACA,oBAAA;AAAF;;AAGA;EACE,WAAA;EACA,eAAA;EACA,uBAAA;AAAF;;AAGA;EACE,YAAA;EACA,YAAA;AAAF;;AAGA;EACE,qBAAA;EACA,gCAAA;EACA,iBAAA;AAAF;;AAGA;EACE,gCAAA;AAAF;;AAGA;EACE,gCAAA;AAAF;;AAGA;EACE,iBAAA;AAAF;;AAGA;EACE,qCAAA;EACA,gCAAA;EACA,kBAAA;EACA,iBAAA;EACA,YAAA;EACA,YAAA;EACA,OAAA;EACA,qBAAA;AAAF;;AAGA,sBAAA;AACA;EACE,MAAA;EACA,gBAAA;EACA,aAAA;EACA,WAAA;AAAF;;AAGA;EACE,WAAA;EACA,YAAA;EACA,gCAAA;EACA,qBAAA;AAAF;;AAGA;EACE,wBAAA;AAAF;;AAIA;EACE,uBAAA;AADF;;AAIA,eAAA;AACA;EACE,WAAA;EACA,eAAA;EACA,iBAAA;EACA,qBAAA;EACA,eAAA;AADF;;AAIA;EACE,gCAAA;EACA,kBAAA;EACA,iBAAA;AADF;;AAIA;EACE,8BAAA;AADF;;AAIA;EACE;IACE,iCAAA;EADF;EAIA;IACE,oDAAA;EAFF;EAKA;IACE,oDAAA;EAHF;EAMA;IACE,oDAAA;EAJF;EAOA;IACE,oDAAA;EALF;AACF;AAQA;EACE,YAAA;EACA,gCAAA;EACA,gBAAA;EACA,aAAA;EACA,qCAAA;EACA,kBAAA;EACA,OAAA;EACA,UAAA;EACA,UAAA;EACA,eAAA;AANF;;AASA;EACE,gBAAA;AANF;;AASA;EACE,2BAAA;AANF;;AASA;EACE,WAAA;EACA,kBAAA;EACA,gCAAA;EACA,WAAA;EACA,YAAA;EACA,OAAA;EACA,WAAA;EACA,4CAAA;AANF;;AASA;EACE,cAAA;EACA,6BAAA;EACA,YAAA;EACA,eAAA;EACA,YAAA;AANF","sourcesContent":["@font-face {\r\n  font-family: \"Jersey\";\r\n  src: url(\"../assets/fonts/Jersey25-Regular.ttf\");\r\n}\r\n\r\n*, *::before, *::after {\r\n  box-sizing: border-box;\r\n  text-decoration: none;\r\n  margin: 0;\r\n  padding: 0;\r\n  user-select: none;\r\n}\r\n\r\nhtml, body {\r\n  width: 100%;\r\n  height: 100%;\r\n  font-family: \"Jersey\", sans-serif, serif;\r\n  font-size: 1.2em;\r\n}\r\n\r\nbody {  \r\n  background-color: var(--color-6);\r\n  color: var(--color-3);\r\n  overflow: none;\r\n}\r\n\r\n#body-wrapper {\r\n  height: 95vh;\r\n  margin: 0;\r\n  padding: 1rem;\r\n}\r\n\r\n#main-container {\r\n  border-radius: var(--border-radius-8);\r\n  flex: 1;\r\n  max-width: 500px;\r\n  height: 65%;\r\n  max-height: 500px;\r\n}\r\n\r\n#left-player {\r\n  background-color: var(--color-5);\r\n}\r\n\r\n#right-player {\r\n  background-color: var(--color-1);\r\n}\r\n\r\n/* Dice */\r\n#dice {\r\n  background-color: var(--color-3);\r\n  border-radius: var(--border-radius-8);\r\n  width: 85px;\r\n  aspect-ratio: 1;\r\n  border: 2px solid transparent;\r\n  border-style: outset;\r\n}\r\n\r\n.dice-dot {\r\n  width: 12px;\r\n  aspect-ratio: 1;\r\n  background-color: black;\r\n}\r\n\r\n.buttons {\r\n  width: 150px;\r\n  height: 50px;\r\n}\r\n\r\n.btn {\r\n  color: var(--color-6);\r\n  background-color: var(--color-4);\r\n  line-height: 50px;\r\n}\r\n\r\n.hold {\r\n  border-radius: 0.5rem 0 0 0.5rem;\r\n}\r\n\r\n.roll {\r\n  border-radius: 0 0.5rem 0.5rem 0;\r\n}\r\n\r\n.score-font {\r\n  font-size: 1.5rem;\r\n}\r\n\r\n.player-live-score {\r\n  border-radius: var(--border-radius-8);\r\n  background-color: var(--color-4);\r\n  text-align: center;\r\n  line-height: 50px;\r\n  width: 150px;\r\n  height: 50px;\r\n  top: 5%;\r\n  color: var(--color-6);\r\n}\r\n\r\n/* Players Round bar */\r\n.rounds {\r\n  top: 0;\r\n  text-align: left;\r\n  display: flex;\r\n  gap: 0.2rem;\r\n}\r\n\r\n.round-bar {\r\n  width: 15px;\r\n  height: 25px;\r\n  background-color: var(--color-3);\r\n  border-radius: 0.1rem;\r\n}\r\n\r\n#left-round > * {\r\n  transform: skewX(-25deg);\r\n  \r\n}\r\n\r\n#right-round > * {\r\n  transform: skewX(25deg);\r\n}\r\n\r\n/* info modal */\r\n#info {\r\n  width: 30px;\r\n  aspect-ratio: 1;\r\n  margin-left: 1rem;\r\n  color: var(--color-3);\r\n  cursor: pointer;\r\n}\r\n\r\n.info-icon {\r\n  border: 2px solid var(--color-3);\r\n  text-align: center;\r\n  line-height: 30px;\r\n}\r\n\r\n.animation-blink {\r\n  animation: blink 0.8s infinite;\r\n}\r\n\r\n@keyframes blink {\r\n  0% {\r\n    outline: 1px solid var(--color-5);\r\n  }\r\n\r\n  25% {\r\n    outline: 5px solid #f07067e0;\r\n  }\r\n\r\n  50% {\r\n    outline: 7px solid #f070678c;\r\n  }\r\n\r\n  75% {\r\n    outline: 9px solid #f0706750;\r\n  }\r\n\r\n  100% {\r\n    outline: 0px solid #f0706750;\r\n  }\r\n}\r\n\r\n.info-modal {\r\n  width: 350px;\r\n  background-color: var(--color-1);\r\n  font-size: 0.9em;\r\n  padding: 1rem;\r\n  border-radius: var(--border-radius-8);\r\n  position: absolute;\r\n  top: 0%;\r\n  left: 150%;\r\n  z-index: 2;\r\n  cursor: default;\r\n}\r\n\r\n.info-modal p {\r\n  font-size: 0.9em;\r\n}\r\n\r\n.info-modal ol {\r\n  list-style-position: inside;\r\n}\r\n\r\n.info-modal::before {\r\n  content: \"\";\r\n  position: absolute;\r\n  background-color: var(--color-1);\r\n  width: 20px;\r\n  height: 25px;\r\n  top: 2%;\r\n  left: -10px;\r\n  clip-path: polygon(0 50%, 100% 0, 100% 100%);\r\n}\r\n\r\n.close-modal {\r\n  font-size: 1em;\r\n  background-color: transparent;\r\n  border: none;\r\n  cursor: pointer;\r\n  color: white;\r\n}"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -1265,10 +1359,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _styles_style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./styles/style.css */ "./src/styles/style.css");
 /* harmony import */ var _styles_utils_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./styles/utils.css */ "./src/styles/utils.css");
 /* harmony import */ var _styles_var_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./styles/var.css */ "./src/styles/var.css");
-/* harmony import */ var _scripts_entities_players__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./scripts/entities/players */ "./src/scripts/entities/players.js");
-/* harmony import */ var _scripts_utilities_utils__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./scripts/utilities/utils */ "./src/scripts/utilities/utils.js");
-/* harmony import */ var _scripts_components_score__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./scripts/components/score */ "./src/scripts/components/score.js");
-/* harmony import */ var _scripts_components_dice__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./scripts/components/dice */ "./src/scripts/components/dice.js");
+/* harmony import */ var _scripts_components_info__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./scripts/components/info */ "./src/scripts/components/info.js");
+/* harmony import */ var _scripts_entities_players__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./scripts/entities/players */ "./src/scripts/entities/players.js");
+/* harmony import */ var _scripts_utilities_utils__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./scripts/utilities/utils */ "./src/scripts/utilities/utils.js");
+/* harmony import */ var _scripts_components_score__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./scripts/components/score */ "./src/scripts/components/score.js");
+/* harmony import */ var _scripts_components_dice__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./scripts/components/dice */ "./src/scripts/components/dice.js");
 
 
 
@@ -1276,23 +1371,28 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-_scripts_entities_players__WEBPACK_IMPORTED_MODULE_3__.switchPlayers(_scripts_entities_players__WEBPACK_IMPORTED_MODULE_3__.players);
+
+_scripts_entities_players__WEBPACK_IMPORTED_MODULE_4__.switchPlayers(_scripts_entities_players__WEBPACK_IMPORTED_MODULE_4__.players);
 
 // Roll
 var rollBtn = document.getElementById("btn-roll");
 rollBtn.addEventListener("click", function () {
-  return (0,_scripts_components_dice__WEBPACK_IMPORTED_MODULE_6__.roll)(_scripts_utilities_utils__WEBPACK_IMPORTED_MODULE_4__.randNum);
+  return (0,_scripts_components_dice__WEBPACK_IMPORTED_MODULE_7__.roll)(_scripts_utilities_utils__WEBPACK_IMPORTED_MODULE_5__.randNum);
 });
 
 // Hold functionality
 var holdBtn = document.getElementById("btn-hold");
 holdBtn.addEventListener("click", function () {
-  return _scripts_components_score__WEBPACK_IMPORTED_MODULE_5__.holdScore(_scripts_components_score__WEBPACK_IMPORTED_MODULE_5__.currentLiveScore);
+  return _scripts_components_score__WEBPACK_IMPORTED_MODULE_6__.holdScore(_scripts_components_score__WEBPACK_IMPORTED_MODULE_6__.currentLiveScore);
 });
-_scripts_entities_players__WEBPACK_IMPORTED_MODULE_3__.redPlayer.scoreLink.textContent = _scripts_entities_players__WEBPACK_IMPORTED_MODULE_3__.redPlayer.score;
-_scripts_entities_players__WEBPACK_IMPORTED_MODULE_3__.bluePlayer.scoreLink.textContent = _scripts_entities_players__WEBPACK_IMPORTED_MODULE_3__.bluePlayer.score;
+_scripts_entities_players__WEBPACK_IMPORTED_MODULE_4__.redPlayer.scoreLink.textContent = _scripts_entities_players__WEBPACK_IMPORTED_MODULE_4__.redPlayer.score;
+_scripts_entities_players__WEBPACK_IMPORTED_MODULE_4__.bluePlayer.scoreLink.textContent = _scripts_entities_players__WEBPACK_IMPORTED_MODULE_4__.bluePlayer.score;
+var infoIcon = document.querySelector(".info-icon");
+var closeBtn = document.querySelector(".close-modal");
+infoIcon.addEventListener("click", _scripts_components_info__WEBPACK_IMPORTED_MODULE_3__.showModal);
+closeBtn.addEventListener("click", _scripts_components_info__WEBPACK_IMPORTED_MODULE_3__.hideModal);
 })();
 
 /******/ })()
 ;
-//# sourceMappingURL=indexf7fb199d178ee9c1bea3.js.map
+//# sourceMappingURL=indexecb1059c29b1adfcb885.js.map
