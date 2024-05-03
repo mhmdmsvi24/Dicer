@@ -30,6 +30,16 @@
         </p>
       </div>
     </div>
+    <div class="win-modal-wrapper p-absolute middle width-100 height-100 d-flex justify-center align-center d-none"
+      id="win-modal">
+      <div class="win-modal-cover width-100 height-100" id="win-modal-cvr"></div>
+      <div class="win-modal p-absolute d-flex justify-between align-center flex-col padd-1 shadow">
+        <p>Player <span></span> Won!!! The Game</p>
+        <button class="shadow" id="win-modal-btn">
+          Replay
+        </button>
+      </div>
+    </div>
     <div id="main-container" class="d-flex justify-center align-center overflow-hidden p-relative middle shadow">
       <div class="dice-items p-absolute d-flex justify-around align-center height-100 flex-col z-index-1">
         <div class="player-live-score score-font shadow" id="live-score">

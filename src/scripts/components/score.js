@@ -1,4 +1,5 @@
 import * as Player from "../entities/players";
+import { showWinModal } from "./win-modal";
 
 // clear the liveScore (currentLiveScore = 0)
 function clearLiveScore() {
@@ -29,18 +30,25 @@ function holdScore(score) {
 
 function checkRound(currentPlayer) {
   const playerScore = currentPlayer.score;
-  if (playerScore >= 100) {
+  if (playerScore >= 10) {
     currentPlayer.roundsWon += 1;
-    ResetScore();
+    resetScore();
     addRoundsUI(currentPlayer);
   }
 }
 
-function ResetScore() {
+function resetScore() {
   Player.players.map((player) => {
     player.score = 0;
     player.scoreLink.textContent = 0;
   })
+}
+
+function resetRound() {
+  Player.players.map((p) => {
+    p.roundsWon = 0;
+    p.roundLink.innerHTML = "";
+  }) 
 }
 
 function addRoundsUI(currentPlayer) {
@@ -52,9 +60,11 @@ function addRoundsUI(currentPlayer) {
 }
 
 function checkWinner(currentPlayer) {
-  if (currentPlayer.roundsWon >= 3) {
+  if (currentPlayer.roundsWon >= 1) {
     currentPlayer.scoreLink.textContent = "WON!!!";
+    
+    showWinModal();
   }
 }
 
-export { clearLiveScore, showLive, holdScore, currentLiveScore };
+export { clearLiveScore, showLive, holdScore, currentLiveScore, resetScore, resetRound };
