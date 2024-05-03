@@ -33,8 +33,6 @@ body {
 #main-container {
   border-radius: var(--border-radius-8);
   flex: 1;
-  width: 500px;
-  height: 450px;
 }
 
 #left-player {
@@ -233,5 +231,30 @@ body {
   &:hover {
     opacity: 0.9;
     cursor: pointer;
+  }
+}
+
+@media screen and (orientation: landscape) {
+  #main-container {
+    width: 550px;
+    height: 500px;
+  }
+}
+
+@media screen and (orientation: portrait) {
+  #main-container {
+    width: 70vw;
+    min-width: 350px;
+    height: 50%;
+  }
+
+  #live-score, #dice, .buttons {
+    transform: scale(0.9);
+  }
+
+  .info-modal {
+    transform: scale(0.8);
+    top: -25px;
+    left: 10px;
   }
 }
