@@ -78,9 +78,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   clearLiveScore: () => (/* binding */ clearLiveScore),
 /* harmony export */   currentLiveScore: () => (/* binding */ currentLiveScore),
 /* harmony export */   holdScore: () => (/* binding */ holdScore),
+/* harmony export */   resetRound: () => (/* binding */ resetRound),
+/* harmony export */   resetScore: () => (/* binding */ resetScore),
 /* harmony export */   showLive: () => (/* binding */ showLive)
 /* harmony export */ });
 /* harmony import */ var _entities_players__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../entities/players */ "./src/scripts/entities/players.js");
+/* harmony import */ var _win_modal__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./win-modal */ "./src/scripts/components/win-modal.js");
+
 
 
 // clear the liveScore (currentLiveScore = 0)
@@ -107,19 +111,19 @@ function holdScore(score) {
 }
 function checkRound(currentPlayer) {
   var playerScore = currentPlayer.score;
-  if (playerScore >= 10) {
+  if (playerScore >= 100) {
     currentPlayer.roundsWon += 1;
-    ResetScore();
+    resetScore();
     addRoundsUI(currentPlayer);
   }
 }
-function ResetScore() {
+function resetScore() {
   _entities_players__WEBPACK_IMPORTED_MODULE_0__.players.map(function (player) {
     player.score = 0;
     player.scoreLink.textContent = 0;
   });
 }
-function ResetRound() {
+function resetRound() {
   _entities_players__WEBPACK_IMPORTED_MODULE_0__.players.map(function (p) {
     p.roundsWon = 0;
     p.roundLink.innerHTML = "";
@@ -134,10 +138,38 @@ function addRoundsUI(currentPlayer) {
 function checkWinner(currentPlayer) {
   if (currentPlayer.roundsWon >= 3) {
     currentPlayer.scoreLink.textContent = "WON!!!";
-    // ResetScore();
-    // ResetRound();
+    (0,_win_modal__WEBPACK_IMPORTED_MODULE_1__.showWinModal)();
   }
 }
+
+
+/***/ }),
+
+/***/ "./src/scripts/components/win-modal.js":
+/*!*********************************************!*\
+  !*** ./src/scripts/components/win-modal.js ***!
+  \*********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   showWinModal: () => (/* binding */ showWinModal)
+/* harmony export */ });
+/* harmony import */ var _score__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./score */ "./src/scripts/components/score.js");
+
+var winModalWrapper = document.getElementById("win-modal");
+var winModalCover = document.getElementById("win-modal-cvr");
+var windModalBtn = document.getElementById("win-modal-btn");
+function hideWinModal() {
+  winModalWrapper.classList.add("d-none");
+  (0,_score__WEBPACK_IMPORTED_MODULE_0__.resetRound)();
+  (0,_score__WEBPACK_IMPORTED_MODULE_0__.resetScore)();
+}
+function showWinModal() {
+  winModalWrapper.classList.remove("d-none");
+}
+windModalBtn.addEventListener("click", hideWinModal);
+winModalCover.addEventListener("click", hideWinModal);
 
 
 /***/ }),
@@ -269,9 +301,6 @@ body {
 #main-container {
   border-radius: var(--border-radius-8);
   flex: 1;
-  max-width: 500px;
-  height: 65%;
-  max-height: 500px;
 }
 
 #left-player {
@@ -464,7 +493,29 @@ body {
 .win-modal-wrapper button:hover {
   opacity: 0.9;
   cursor: pointer;
-}`, "",{"version":3,"sources":["webpack://./src/styles/style.css"],"names":[],"mappings":"AAAA;EACE,qBAAA;EACA,4CAAA;AACF;AAEA;EACE,sBAAA;EACA,qBAAA;EACA,SAAA;EACA,UAAA;EACA,iBAAA;AAAF;;AAGA;EACE,WAAA;EACA,YAAA;EACA,wCAAA;EACA,gBAAA;AAAF;;AAGA;EACE,gCAAA;EACA,qBAAA;EACA,cAAA;AAAF;;AAGA;EACE,YAAA;EACA,SAAA;EACA,aAAA;AAAF;;AAGA;EACE,qCAAA;EACA,OAAA;EACA,gBAAA;EACA,WAAA;EACA,iBAAA;AAAF;;AAGA;EACE,gCAAA;AAAF;;AAGA;EACE,gCAAA;AAAF;;AAGA,SAAA;AACA;EACE,gCAAA;EACA,qCAAA;EACA,WAAA;EACA,eAAA;EACA,6BAAA;EACA,oBAAA;AAAF;;AAGA;EACE,WAAA;EACA,eAAA;EACA,uBAAA;AAAF;;AAGA;EACE,YAAA;EACA,YAAA;AAAF;;AAGA;EACE,qBAAA;EACA,gCAAA;EACA,iBAAA;AAAF;;AAGA;EACE,gCAAA;AAAF;;AAGA;EACE,gCAAA;AAAF;;AAGA;EACE,iBAAA;AAAF;;AAGA;EACE,qCAAA;EACA,gCAAA;EACA,kBAAA;EACA,iBAAA;EACA,YAAA;EACA,YAAA;EACA,OAAA;EACA,qBAAA;AAAF;;AAGA,sBAAA;AACA;EACE,MAAA;EACA,gBAAA;EACA,aAAA;EACA,WAAA;AAAF;;AAGA;EACE,WAAA;EACA,YAAA;EACA,gCAAA;EACA,qBAAA;AAAF;;AAGA;EACE,wBAAA;AAAF;;AAIA;EACE,uBAAA;AADF;;AAIA,eAAA;AACA;EACE,WAAA;EACA,eAAA;EACA,iBAAA;EACA,qBAAA;EACA,eAAA;AADF;;AAIA;EACE,gCAAA;EACA,kBAAA;EACA,iBAAA;AADF;;AAIA;EACE,8BAAA;AADF;;AAIA;EACE;IACE,iCAAA;EADF;EAIA;IACE,oDAAA;EAFF;EAKA;IACE,oDAAA;EAHF;EAMA;IACE,oDAAA;EAJF;EAOA;IACE,oDAAA;EALF;AACF;AAQA;EACE,YAAA;EACA,gCAAA;EACA,gBAAA;EACA,aAAA;EACA,qCAAA;EACA,kBAAA;EACA,OAAA;EACA,UAAA;EACA,UAAA;EACA,eAAA;AANF;;AASA;EACE,gBAAA;AANF;;AASA;EACE,2BAAA;AANF;;AASA;EACE,WAAA;EACA,kBAAA;EACA,gCAAA;EACA,WAAA;EACA,YAAA;EACA,OAAA;EACA,WAAA;EACA,4CAAA;AANF;;AASA;EACE,cAAA;EACA,6BAAA;EACA,YAAA;EACA,eAAA;EACA,YAAA;AANF;;AASA,cAAA;AACA;EACE,UAAA;AANF;;AASA;EACE,WAAA;EACA,aAAA;EACA,YAAA;EACA,gCAAA;EACA,qCAAA;EACA,qBAAA;EACA,oBAAA;EACA,gBAAA;AANF;;AASA;EACE,gCAAA;EACA,YAAA;AANF;;AASA;EACE,YAAA;EACA,YAAA;EACA,SAAA;EACA,qCAAA;EACA,gCAAA;EACA,oBAAA;EACA,gBAAA;AANF;AAQE;EACE,YAAA;EACA,eAAA;AANJ","sourcesContent":["@font-face {\r\n  font-family: \"Jersey\";\r\n  src: url(\"../assets/fonts/Jersey25-Regular.ttf\");\r\n}\r\n\r\n*, *::before, *::after {\r\n  box-sizing: border-box;\r\n  text-decoration: none;\r\n  margin: 0;\r\n  padding: 0;\r\n  user-select: none;\r\n}\r\n\r\nhtml, body {\r\n  width: 100%;\r\n  height: 100%;\r\n  font-family: \"Jersey\", sans-serif, serif;\r\n  font-size: 1.2em;\r\n}\r\n\r\nbody {  \r\n  background-color: var(--color-6);\r\n  color: var(--color-3);\r\n  overflow: none;\r\n}\r\n\r\n#body-wrapper {\r\n  height: 95vh;\r\n  margin: 0;\r\n  padding: 1rem;\r\n}\r\n\r\n#main-container {\r\n  border-radius: var(--border-radius-8);\r\n  flex: 1;\r\n  max-width: 500px;\r\n  height: 65%;\r\n  max-height: 500px;\r\n}\r\n\r\n#left-player {\r\n  background-color: var(--color-5);\r\n}\r\n\r\n#right-player {\r\n  background-color: var(--color-1);\r\n}\r\n\r\n/* Dice */\r\n#dice {\r\n  background-color: var(--color-3);\r\n  border-radius: var(--border-radius-8);\r\n  width: 85px;\r\n  aspect-ratio: 1;\r\n  border: 2px solid transparent;\r\n  border-style: outset;\r\n}\r\n\r\n.dice-dot {\r\n  width: 12px;\r\n  aspect-ratio: 1;\r\n  background-color: black;\r\n}\r\n\r\n.buttons {\r\n  width: 150px;\r\n  height: 50px;\r\n}\r\n\r\n.btn {\r\n  color: var(--color-6);\r\n  background-color: var(--color-4);\r\n  line-height: 50px;\r\n}\r\n\r\n.hold {\r\n  border-radius: 0.5rem 0 0 0.5rem;\r\n}\r\n\r\n.roll {\r\n  border-radius: 0 0.5rem 0.5rem 0;\r\n}\r\n\r\n.score-font {\r\n  font-size: 1.5rem;\r\n}\r\n\r\n.player-live-score {\r\n  border-radius: var(--border-radius-8);\r\n  background-color: var(--color-4);\r\n  text-align: center;\r\n  line-height: 50px;\r\n  width: 150px;\r\n  height: 50px;\r\n  top: 5%;\r\n  color: var(--color-6);\r\n}\r\n\r\n/* Players Round bar */\r\n.rounds {\r\n  top: 0;\r\n  text-align: left;\r\n  display: flex;\r\n  gap: 0.2rem;\r\n}\r\n\r\n.round-bar {\r\n  width: 15px;\r\n  height: 25px;\r\n  background-color: var(--color-3);\r\n  border-radius: 0.1rem;\r\n}\r\n\r\n#left-round > * {\r\n  transform: skewX(-25deg);\r\n  \r\n}\r\n\r\n#right-round > * {\r\n  transform: skewX(25deg);\r\n}\r\n\r\n/* info modal */\r\n#info {\r\n  width: 30px;\r\n  aspect-ratio: 1;\r\n  margin-left: 1rem;\r\n  color: var(--color-3);\r\n  cursor: pointer;\r\n}\r\n\r\n.info-icon {\r\n  border: 2px solid var(--color-3);\r\n  text-align: center;\r\n  line-height: 30px;\r\n}\r\n\r\n.animation-blink {\r\n  animation: blink 0.8s infinite;\r\n}\r\n\r\n@keyframes blink {\r\n  0% {\r\n    outline: 1px solid var(--color-5);\r\n  }\r\n\r\n  25% {\r\n    outline: 5px solid #f07067e0;\r\n  }\r\n\r\n  50% {\r\n    outline: 7px solid #f070678c;\r\n  }\r\n\r\n  75% {\r\n    outline: 9px solid #f0706750;\r\n  }\r\n\r\n  100% {\r\n    outline: 0px solid #f0706750;\r\n  }\r\n}\r\n\r\n.info-modal {\r\n  width: 350px;\r\n  background-color: var(--color-1);\r\n  font-size: 0.9em;\r\n  padding: 1rem;\r\n  border-radius: var(--border-radius-8);\r\n  position: absolute;\r\n  top: 0%;\r\n  left: 150%;\r\n  z-index: 2;\r\n  cursor: default;\r\n}\r\n\r\n.info-modal p {\r\n  font-size: 0.9em;\r\n}\r\n\r\n.info-modal ol {\r\n  list-style-position: inside;\r\n}\r\n\r\n.info-modal::before {\r\n  content: \"\";\r\n  position: absolute;\r\n  background-color: var(--color-1);\r\n  width: 20px;\r\n  height: 25px;\r\n  top: 2%;\r\n  left: -10px;\r\n  clip-path: polygon(0 50%, 100% 0, 100% 100%);\r\n}\r\n\r\n.close-modal {\r\n  font-size: 1em;\r\n  background-color: transparent;\r\n  border: none;\r\n  cursor: pointer;\r\n  color: white;\r\n}\r\n\r\n/* Win modal */\r\n.win-modal-wrapper {\r\n  z-index: 3;\r\n}\r\n\r\n.win-modal {\r\n  z-index: 99;\r\n  height: 150px;\r\n  width: 400px;\r\n  background-color: var(--color-4);\r\n  border-radius: var(--border-radius-8);\r\n  color: var(--color-5);\r\n  font-family: inherit;\r\n  font-size: 1.3em;\r\n}\r\n\r\n.win-modal-cover {\r\n  background-color: var(--color-7);\r\n  opacity: 0.5;\r\n}\r\n\r\n.win-modal-wrapper button {\r\n  width: 100px;\r\n  height: 50px;\r\n  border: 0;\r\n  border-radius: var(--border-radius-8);\r\n  background-color: var(--color-5);\r\n  font-family: inherit;\r\n  font-size: 0.8em;\r\n\r\n  &:hover {\r\n    opacity: 0.9;\r\n    cursor: pointer;\r\n  }\r\n}"],"sourceRoot":""}]);
+}
+
+@media screen and (orientation: landscape) {
+  #main-container {
+    width: 550px;
+    height: 500px;
+  }
+}
+@media screen and (orientation: portrait) {
+  #main-container {
+    width: 70vw;
+    min-width: 350px;
+    height: 50%;
+  }
+  #live-score, #dice, .buttons {
+    transform: scale(0.9);
+  }
+  .info-modal {
+    transform: scale(0.8);
+    top: -25px;
+    left: 10px;
+  }
+}`, "",{"version":3,"sources":["webpack://./src/styles/style.css"],"names":[],"mappings":"AAAA;EACE,qBAAA;EACA,4CAAA;AACF;AAEA;EACE,sBAAA;EACA,qBAAA;EACA,SAAA;EACA,UAAA;EACA,iBAAA;AAAF;;AAGA;EACE,WAAA;EACA,YAAA;EACA,wCAAA;EACA,gBAAA;AAAF;;AAGA;EACE,gCAAA;EACA,qBAAA;EACA,cAAA;AAAF;;AAGA;EACE,YAAA;EACA,SAAA;EACA,aAAA;AAAF;;AAGA;EACE,qCAAA;EACA,OAAA;AAAF;;AAGA;EACE,gCAAA;AAAF;;AAGA;EACE,gCAAA;AAAF;;AAGA,SAAA;AACA;EACE,gCAAA;EACA,qCAAA;EACA,WAAA;EACA,eAAA;EACA,6BAAA;EACA,oBAAA;AAAF;;AAGA;EACE,WAAA;EACA,eAAA;EACA,uBAAA;AAAF;;AAGA;EACE,YAAA;EACA,YAAA;AAAF;;AAGA;EACE,qBAAA;EACA,gCAAA;EACA,iBAAA;AAAF;;AAGA;EACE,gCAAA;AAAF;;AAGA;EACE,gCAAA;AAAF;;AAGA;EACE,iBAAA;AAAF;;AAGA;EACE,qCAAA;EACA,gCAAA;EACA,kBAAA;EACA,iBAAA;EACA,YAAA;EACA,YAAA;EACA,OAAA;EACA,qBAAA;AAAF;;AAGA,sBAAA;AACA;EACE,MAAA;EACA,gBAAA;EACA,aAAA;EACA,WAAA;AAAF;;AAGA;EACE,WAAA;EACA,YAAA;EACA,gCAAA;EACA,qBAAA;AAAF;;AAGA;EACE,wBAAA;AAAF;;AAIA;EACE,uBAAA;AADF;;AAIA,eAAA;AACA;EACE,WAAA;EACA,eAAA;EACA,iBAAA;EACA,qBAAA;EACA,eAAA;AADF;;AAIA;EACE,gCAAA;EACA,kBAAA;EACA,iBAAA;AADF;;AAIA;EACE,8BAAA;AADF;;AAIA;EACE;IACE,iCAAA;EADF;EAIA;IACE,oDAAA;EAFF;EAKA;IACE,oDAAA;EAHF;EAMA;IACE,oDAAA;EAJF;EAOA;IACE,oDAAA;EALF;AACF;AAQA;EACE,YAAA;EACA,gCAAA;EACA,gBAAA;EACA,aAAA;EACA,qCAAA;EACA,kBAAA;EACA,OAAA;EACA,UAAA;EACA,UAAA;EACA,eAAA;AANF;;AASA;EACE,gBAAA;AANF;;AASA;EACE,2BAAA;AANF;;AASA;EACE,WAAA;EACA,kBAAA;EACA,gCAAA;EACA,WAAA;EACA,YAAA;EACA,OAAA;EACA,WAAA;EACA,4CAAA;AANF;;AASA;EACE,cAAA;EACA,6BAAA;EACA,YAAA;EACA,eAAA;EACA,YAAA;AANF;;AASA,cAAA;AACA;EACE,UAAA;AANF;;AASA;EACE,WAAA;EACA,aAAA;EACA,YAAA;EACA,gCAAA;EACA,qCAAA;EACA,qBAAA;EACA,oBAAA;EACA,gBAAA;AANF;;AASA;EACE,gCAAA;EACA,YAAA;AANF;;AASA;EACE,YAAA;EACA,YAAA;EACA,SAAA;EACA,qCAAA;EACA,gCAAA;EACA,oBAAA;EACA,gBAAA;AANF;AAQE;EACE,YAAA;EACA,eAAA;AANJ;;AAUA;EACE;IACE,YAAA;IACA,aAAA;EAPF;AACF;AAUA;EACE;IACE,WAAA;IACA,gBAAA;IACA,WAAA;EARF;EAWA;IACE,qBAAA;EATF;EAYA;IACE,qBAAA;IACA,UAAA;IACA,UAAA;EAVF;AACF","sourcesContent":["@font-face {\r\n  font-family: \"Jersey\";\r\n  src: url(\"../assets/fonts/Jersey25-Regular.ttf\");\r\n}\r\n\r\n*, *::before, *::after {\r\n  box-sizing: border-box;\r\n  text-decoration: none;\r\n  margin: 0;\r\n  padding: 0;\r\n  user-select: none;\r\n}\r\n\r\nhtml, body {\r\n  width: 100%;\r\n  height: 100%;\r\n  font-family: \"Jersey\", sans-serif, serif;\r\n  font-size: 1.2em;\r\n}\r\n\r\nbody {  \r\n  background-color: var(--color-6);\r\n  color: var(--color-3);\r\n  overflow: none;\r\n}\r\n\r\n#body-wrapper {\r\n  height: 95vh;\r\n  margin: 0;\r\n  padding: 1rem;\r\n}\r\n\r\n#main-container {\r\n  border-radius: var(--border-radius-8);\r\n  flex: 1;\r\n}\r\n\r\n#left-player {\r\n  background-color: var(--color-5);\r\n}\r\n\r\n#right-player {\r\n  background-color: var(--color-1);\r\n}\r\n\r\n/* Dice */\r\n#dice {\r\n  background-color: var(--color-3);\r\n  border-radius: var(--border-radius-8);\r\n  width: 85px;\r\n  aspect-ratio: 1;\r\n  border: 2px solid transparent;\r\n  border-style: outset;\r\n}\r\n\r\n.dice-dot {\r\n  width: 12px;\r\n  aspect-ratio: 1;\r\n  background-color: black;\r\n}\r\n\r\n.buttons {\r\n  width: 150px;\r\n  height: 50px;\r\n}\r\n\r\n.btn {\r\n  color: var(--color-6);\r\n  background-color: var(--color-4);\r\n  line-height: 50px;\r\n}\r\n\r\n.hold {\r\n  border-radius: 0.5rem 0 0 0.5rem;\r\n}\r\n\r\n.roll {\r\n  border-radius: 0 0.5rem 0.5rem 0;\r\n}\r\n\r\n.score-font {\r\n  font-size: 1.5rem;\r\n}\r\n\r\n.player-live-score {\r\n  border-radius: var(--border-radius-8);\r\n  background-color: var(--color-4);\r\n  text-align: center;\r\n  line-height: 50px;\r\n  width: 150px;\r\n  height: 50px;\r\n  top: 5%;\r\n  color: var(--color-6);\r\n}\r\n\r\n/* Players Round bar */\r\n.rounds {\r\n  top: 0;\r\n  text-align: left;\r\n  display: flex;\r\n  gap: 0.2rem;\r\n}\r\n\r\n.round-bar {\r\n  width: 15px;\r\n  height: 25px;\r\n  background-color: var(--color-3);\r\n  border-radius: 0.1rem;\r\n}\r\n\r\n#left-round > * {\r\n  transform: skewX(-25deg);\r\n  \r\n}\r\n\r\n#right-round > * {\r\n  transform: skewX(25deg);\r\n}\r\n\r\n/* info modal */\r\n#info {\r\n  width: 30px;\r\n  aspect-ratio: 1;\r\n  margin-left: 1rem;\r\n  color: var(--color-3);\r\n  cursor: pointer;\r\n}\r\n\r\n.info-icon {\r\n  border: 2px solid var(--color-3);\r\n  text-align: center;\r\n  line-height: 30px;\r\n}\r\n\r\n.animation-blink {\r\n  animation: blink 0.8s infinite;\r\n}\r\n\r\n@keyframes blink {\r\n  0% {\r\n    outline: 1px solid var(--color-5);\r\n  }\r\n\r\n  25% {\r\n    outline: 5px solid #f07067e0;\r\n  }\r\n\r\n  50% {\r\n    outline: 7px solid #f070678c;\r\n  }\r\n\r\n  75% {\r\n    outline: 9px solid #f0706750;\r\n  }\r\n\r\n  100% {\r\n    outline: 0px solid #f0706750;\r\n  }\r\n}\r\n\r\n.info-modal {\r\n  width: 350px;\r\n  background-color: var(--color-1);\r\n  font-size: 0.9em;\r\n  padding: 1rem;\r\n  border-radius: var(--border-radius-8);\r\n  position: absolute;\r\n  top: 0%;\r\n  left: 150%;\r\n  z-index: 2;\r\n  cursor: default;\r\n}\r\n\r\n.info-modal p {\r\n  font-size: 0.9em;\r\n}\r\n\r\n.info-modal ol {\r\n  list-style-position: inside;\r\n}\r\n\r\n.info-modal::before {\r\n  content: \"\";\r\n  position: absolute;\r\n  background-color: var(--color-1);\r\n  width: 20px;\r\n  height: 25px;\r\n  top: 2%;\r\n  left: -10px;\r\n  clip-path: polygon(0 50%, 100% 0, 100% 100%);\r\n}\r\n\r\n.close-modal {\r\n  font-size: 1em;\r\n  background-color: transparent;\r\n  border: none;\r\n  cursor: pointer;\r\n  color: white;\r\n}\r\n\r\n/* Win modal */\r\n.win-modal-wrapper {\r\n  z-index: 3;\r\n}\r\n\r\n.win-modal {\r\n  z-index: 99;\r\n  height: 150px;\r\n  width: 400px;\r\n  background-color: var(--color-4);\r\n  border-radius: var(--border-radius-8);\r\n  color: var(--color-5);\r\n  font-family: inherit;\r\n  font-size: 1.3em;\r\n}\r\n\r\n.win-modal-cover {\r\n  background-color: var(--color-7);\r\n  opacity: 0.5;\r\n}\r\n\r\n.win-modal-wrapper button {\r\n  width: 100px;\r\n  height: 50px;\r\n  border: 0;\r\n  border-radius: var(--border-radius-8);\r\n  background-color: var(--color-5);\r\n  font-family: inherit;\r\n  font-size: 0.8em;\r\n\r\n  &:hover {\r\n    opacity: 0.9;\r\n    cursor: pointer;\r\n  }\r\n}\r\n\r\n@media screen and (orientation: landscape) {\r\n  #main-container {\r\n    width: 550px;\r\n    height: 500px;\r\n  }\r\n}\r\n\r\n@media screen and (orientation: portrait) {\r\n  #main-container {\r\n    width: 70vw;\r\n    min-width: 350px;\r\n    height: 50%;\r\n  }\r\n\r\n  #live-score, #dice, .buttons {\r\n    transform: scale(0.9);\r\n  }\r\n\r\n  .info-modal {\r\n    transform: scale(0.8);\r\n    top: -25px;\r\n    left: 10px;\r\n  }\r\n}"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -1438,4 +1489,4 @@ closeBtn.addEventListener("click", _scripts_components_info__WEBPACK_IMPORTED_MO
 
 /******/ })()
 ;
-//# sourceMappingURL=index423ae46b80a520f99137.js.map
+//# sourceMappingURL=indexd739c55c02b816fa4cc2.js.map
