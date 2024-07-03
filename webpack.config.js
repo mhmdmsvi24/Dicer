@@ -10,9 +10,8 @@ module.exports = {
     index: path.resolve(__dirname, "src/index.js"),
   },
   output: {
-    path: path.resolve(__dirname, "dist"),
-    filename: "[name][contenthash].js",
-    clean: true,
+    path: path.resolve(__dirname, "./"),
+    filename: "[name].js",
     assetModuleFilename: "[name][ext]",
   },
   devtool: "source-map",
@@ -34,16 +33,16 @@ module.exports = {
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        use: 'babel-loader'
+        use: "babel-loader",
       },
       {
         test: /\.(png|svg|jpg|jpeg|gif)$/i,
         type: "asset/resource",
-        use : [
+        use: [
           {
-            loader: "file-loader"
-          }
-        ]
+            loader: "file-loader",
+          },
+        ],
       },
     ],
   },
