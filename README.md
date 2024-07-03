@@ -1,3 +1,5 @@
+✔ **GITHUB PAGES ACTIVATD**: https://mhmdmsvi24.github.io/Dicer/
+
 # Dicer: A Modern Take on the Classic Pig Game
 Welcome to Dicer!
 Dicer is a single-player pig game with a twist! I built it as my first project on my Front-End 
