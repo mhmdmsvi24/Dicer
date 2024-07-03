@@ -30,7 +30,7 @@ function holdScore(score) {
 
 function checkRound(currentPlayer) {
   const playerScore = currentPlayer.score;
-  if (playerScore >= 10) {
+  if (playerScore >= 100) {
     currentPlayer.roundsWon += 1;
     resetScore();
     addRoundsUI(currentPlayer);
@@ -60,7 +60,7 @@ function addRoundsUI(currentPlayer) {
 }
 
 function checkWinner(currentPlayer) {
-  if (currentPlayer.roundsWon >= 1) {
+  if (currentPlayer.roundsWon >= 3) {
     currentPlayer.scoreLink.textContent = "WON!!!";
     
     showWinModal();

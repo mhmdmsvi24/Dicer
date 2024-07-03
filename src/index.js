@@ -2,7 +2,7 @@ import "./styles/style.css";
 import "./styles/utils.css";
 import "./styles/var.css";
 
-import {showModal, hideModal} from "./scripts/components/info";
+import { showModal, hideModal } from "./scripts/components/info";
 import * as Player from "./scripts/entities/players";
 import { randNum } from "./scripts/utilities/utils";
 import * as Score from "./scripts/components/score";
